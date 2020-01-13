@@ -1,6 +1,8 @@
 
 {
+  "navigationStyle": "custom",
   "usingComponents": {
-    "user": "../../components/user/user"
+    "user": "../../components/user/user",
+    "navbar": "../../components/navbar/index"
   }
 }

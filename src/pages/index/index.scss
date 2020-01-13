@@ -1,6 +1,22 @@
 
 @import 'share';
 
+.index{
+	width: 750rpx;
+	min-height: 100vh;
+	&_topbar{
+		width: 100%;
+		height: auto;
+		image{
+			width: 100%;
+			height: auto;
+		}
+	}
+	&_bar{
+		background-color: transparent !important;
+		position: absolute;
+	}
+}
 .motto {
 	@extend %center-flex;
 

@@ -5,7 +5,7 @@ const delay = (t = 0) => new Promise((resolve) => setTimeout(resolve, t));
 // 获取应用实例
 const app = getApp(); //  eslint-disable-line no-undef
 
-const navigateTo = app.utils.promisify(wx.navigateTo) // promise化
+// const navigateTo = app.utils.promisify(wx.navigateTo) // promise化
 
 Page({
 	data: {
@@ -17,6 +17,12 @@ Page({
 		wx.navigateTo({
 			url: '../logs/logs',
 		});
+	},
+	handlerGobackClick() {
+		console.log('ccc')
+	},
+	handlerGohomeClick() {
+		console.log('haha')
 	},
 	async gousercenter() {
 		// 无promise
