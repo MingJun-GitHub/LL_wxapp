@@ -3,12 +3,38 @@
 		"pages/index/index",
 		"pages/logs/logs",
 		"pages/user/user",
-		"pages/list/list"
+		"pages/list/list",
+		"pages/catalog/index",
+		"pages/cart/index",
+		"pages/search/index"
 	],
 	"window": {
 		"backgroundTextStyle": "light",
 		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "Wechat",
+		"navigationBarTitleText": "冷链食品",
 		"navigationBarTextStyle": "black"
-	}
+	},
+	"tabBar": {
+		"list": [{
+		  "pagePath": "pages/index/index",
+		  "text": "首页",
+		  "iconPath": "images/tab/home.png",
+		  "selectedIconPath": "images/tab/home-on.png"
+		}, {
+			"pagePath": "pages/catalog/index",
+			"text": "分类",
+			"iconPath": "images/tab/catalog.png",
+			"selectedIconPath": "images/tab/catalog-on.png"
+		  },{
+			"pagePath": "pages/cart/index",
+			"text": "购物车",
+			"iconPath": "images/tab/cart.png",
+			"selectedIconPath": "images/tab/cart-on.png"
+		  },{
+			"pagePath": "pages/user/user",
+			"text": "我的",
+			"iconPath": "images/tab/user.png",
+			"selectedIconPath": "images/tab/user-on.png"
+		  }]
+	  }
 }

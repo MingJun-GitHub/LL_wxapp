@@ -70,7 +70,8 @@
 	"dependencies": {
 		"babel-runtime": "^6.23.0",
 		"es6-promise": "^4.1.0",
-		"lodash": "^4.17.4"
+		"lodash": "^4.17.4",
+		"triggerbus": "^4.0.0"
 	},
 	"jest": {
 		"modulePathIgnorePatterns": [

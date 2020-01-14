@@ -1,0 +1,10 @@
+<view class="search">
+	 <view class="search_bar">
+		 <input type="text" placeholder="请输入商品"></input> <button>搜索</button>
+	 </view>
+	 <view class="search_empty">
+		 <image src="../../images/search/empty.png" mode="widthFix" />
+		 <view>哎呀，没有找到相关商品</view>
+		 <view>换个词试试吧~</view>
+	 </view>
+</view>

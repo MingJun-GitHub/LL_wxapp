@@ -1,0 +1,16 @@
+<view class='catelog'>
+  <view class='catelog_left'>
+    <scroll-view scroll-y>
+      <block wx:for="{{list}}" wx:key="list">
+        <view bindtap='clickScroll' data-id="{{item}}">{{item}}</view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='catelog_right'>
+    <scroll-view scroll-y scroll-into-view="{{toView}}" scroll-with-animation="true">
+      <block wx:for="{{list}}" wx:key="list">
+        <view bindtap='clickScroll' id="{{item}}">{{item}}</view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

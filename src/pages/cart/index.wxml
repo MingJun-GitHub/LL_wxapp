@@ -1,0 +1,10 @@
+<view class="cart">
+	<view class="cart_empty">
+	  <image src="../../images/cart/empty.png" mode="widthFix" />
+	  <view class="cart_empty__tips">购物车空空如也</view>
+	  <button>去逛逛</button>
+	</view>
+	<view class="cart_rec">
+	   <view class="cart_rec__tit">猜你喜欢</view>
+	</view>
+</view>

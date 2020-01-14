@@ -3,13 +3,17 @@
 <wxs src="../../wxs/powered.wxs" module="powered" />
 
 <view class="index">
-  <navbar searchBar="{{true}}" searchText='请输入商品名称'  background='transparent' backgroundColorTop='transparent' ext-class="index_bar" back="{{false}}" home="{{false}}"
+  
+  <navbar searchBar="{{true}}" searchText="请输入商品名称"  background="{{backgroundColorTop}}" backgroundColorTop="{{backgroundColorTop}}" ext-class="index_bar" back="{{false}}" home="{{false}}"
     bindback="handlerGobackClick" bindhome="handlerGohomeClick"></navbar>
   <view class="index_topbar">
     <image src="../../images/index/index_topbar.png" mode="widthFix"></image>
   </view>
-  <div class="index-goods">
+  <button bindgetuserinfo="getUserinfo" open-type="getUserInfo">拿用户信息</button>
 
+   <button bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">手机号</button>
+  <div class="index_goods">
+     <goods wx:for="{{10}}" wx:key="{{index}}" wx:for-index="index" wx:for-item="item"></goods>
   </div>
   <!-- <view bindtap="bindViewTap">
     <user avatarUrl="{{userInfo.avatarUrl}}" nickName="{{userInfo.nickName}}"></user>

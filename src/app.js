@@ -1,4 +1,4 @@
-// import './utils/init'
+import './utils/init'
 App({
 	onLaunch() {
 		// console.log(camelCase('OnLaunch'));
@@ -7,25 +7,33 @@ App({
 		logs.unshift(Date.now());
 		wx.setStorageSync('logs', logs);
 	},
-	getUserInfo(cb) {
+	async getUserInfo(cb) {
 		if (this.globalData.userInfo) {
 			typeof cb === 'function' && cb(this.globalData.userInfo);
 		}
 		else {
 			// 调用登录接口
 			wx.login({
-				success: () => {
-					wx.getUserInfo({
-						success: (res) => {
-							this.globalData.userInfo = res.userInfo;
-							typeof cb === 'function' && cb(this.globalData.userInfo);
-						},
-					});
+				success: async (res) => {
+					console.log('res', res)
+					// wx.getUserInfo({
+					// 	success: (res) => {
+					// 		this.globalData.userInfo = res.userInfo;
+					// 		typeof cb === 'function' && cb(this.globalData.userInfo);
+					// 	},
+					// });
+					// const back = await wxs.http.get({
+					// 	url: '/wxUser/login',
+					// 	data: {
+					// 		wxcode: res.code
+					// 	}
+					// })
+					console.log('back--->', back)
 				},
 			});
 		}
 	},
 	globalData: {
 		userInfo: null,
-	},
+	}
 });

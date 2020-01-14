@@ -1,0 +1,28 @@
+.catelog {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	width: 750rpx;
+	&_left{
+		width: 170rpx;
+		height: 100vh;
+		scroll-view {
+			height: 100vh;
+		}
+		view {
+			text-align: center;
+			color: #333;
+			background-color: #f8f8f8;
+			height: 88rpx;
+			line-height: 88rpx;
+		}
+	}
+	&_right{
+		// display: flex;
+		flex: 1;
+		height: 100vh;
+		scroll-view {
+			height: 100vh;
+		}
+	}
+}

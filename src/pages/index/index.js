@@ -11,6 +11,7 @@ Page({
 	data: {
 		motto: 'Hello World',
 		userInfo: {},
+		backgroundColorTop: 'transparent'
 	},
 	// 事件处理函数
 	bindViewTap() {
@@ -23,6 +24,12 @@ Page({
 	},
 	handlerGohomeClick() {
 		console.log('haha')
+	},
+	getUserinfo(data) {
+		console.log('data---', data)
+	},
+	getPhoneNumber(data) {
+		console.log('getPhoneNumber', data)
 	},
 	async gousercenter() {
 		// 无promise
@@ -50,6 +57,18 @@ Page({
 			console.log('err', err)
 		})
 		*/
+	},
+	onPageScroll(e) {
+		let {scrollTop} = e
+		if (scrollTop>=100) {
+			this.setData({
+				backgroundColorTop: '#f12b5f'
+			})
+		} else {
+			this.setData({
+				backgroundColorTop: 'transparent'
+			})
+		}
 	},
 	async onLoad() {
 		await delay();
