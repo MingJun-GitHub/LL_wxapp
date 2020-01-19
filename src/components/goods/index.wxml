@@ -1,4 +1,4 @@
-<view class="goods_item">
+<view class="goods_item" bindtap="goGoods" data-item="{{data}}">
   <view class="goods_item__pic">
     <image src="{{data.thumb?data.thumb:'../../images/goods/default.png'}}" mode="widthFix" />
   </view>

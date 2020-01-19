@@ -1,0 +1,53 @@
+<view class="order">
+	<view class="order-tabs">
+		<text class="tabItem cur">全部</text>
+		<text class="tabItem">待付款</text>
+		<text class="tabItem">待发货</text>
+		<text class="tabItem">已发货</text>
+		<text class="tabItem">待评价</text>
+	</view>
+	<view class="order-content">
+		<view class="orderItem">
+			<view class="order-top">
+				<image class="goods-img" src="https://image.watsons.com.cn//upload/e2c3f75c.jpg"></image>
+				<view class="goods-info">
+					<view class="goods-info-top">
+						<view class="title">MMH新手套装 多肉植物组合盆栽绿植花卉...</view>
+						<view class="state">卖家已发货</view>	
+					</view>
+					<view class="category">
+						<text class="sort">颜色分类：</text> 
+						<text  class="num">×1</text>
+					</view>
+					<view class="price">￥21.9</view>
+				</view>
+			</view>
+			<view class="order-bottom">
+				<button  size="mini" class="btn">查看物流</button>
+			</view>
+		</view>
+		<view class="orderItem">
+			<view class="order-top">
+				<image class="goods-img" src="https://image.watsons.com.cn//upload/e2c3f75c.jpg"></image>
+				<view class="goods-info">
+					<view class="goods-info-top">
+						<view class="title">MMH新手套装 多肉植物组合盆栽绿植花卉...</view>
+						<view class="state">已取消</view>	
+					</view>
+					<view class="category">
+						<text class="sort">颜色分类：</text> 
+						<text  class="num">×1</text>
+					</view>
+					<view class="price">￥21.9</view>
+				</view>
+			</view>
+			<view class="order-bottom">
+				<button  size="mini" class="btn">再来一单</button>
+			</view>
+		</view>
+		<view class="nothing">
+			<image class="nothing-icon" src="https://img.xiaopiu.com/userImages/img1905016f83329580.png" />
+			<text class="text-tips">暂无相关订单</text>
+		</view>
+	</view>
+</view>

@@ -1,3 +1,222 @@
-.container {
-	padding: 20rpx;
+.product {
+	width: 750rpx;
+	min-height: 100vh;
+
+	&_pic {
+		width: 750rpx;
+		height: 750rpx;
+		background-color: #efefef;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+
+		image {
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	&_footer {
+		background-color: #fff;
+		border-top: 1rpx solid #efefef;
+		position: fixed;
+		width: 750rpx;
+		height: 103rpx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		line-height: normal;
+		bottom: 0;
+		z-index: 10;
+		left: 0;
+		right: 0;
+		margin: auto;
+
+		&__cart {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 103rpx;
+			flex-direction: column;
+			width: 150rpx;
+			font-size: 23rpx;
+
+			.cart_icon {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+
+				image {
+					width: 40rpx;
+				}
+
+				text {
+					position: absolute;
+					color: #fff;
+					background-color: #f12b5f;
+					font-style: 20rpx;
+					height: 30rpx;
+					line-height: 30rpx;
+					padding: 0 10rpx;
+					border-radius: 15rpx;
+					right: -30rpx;
+					top: -10rpx;
+				}
+			}
+		}
+
+		&__tocart,
+		&__buy {
+			width: 300rpx;
+			height: 103rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			line-height: normal;
+			background-color: #000000;
+			color: #fff;
+		}
+
+		&__tocart {
+			background-color: #f12b5f;
+
+		}
+	}
+
+	&_skupop {
+		width: 750rpx;
+		background: #fff;
+		min-height: 100vh;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 20;
+		background-color: rgba(0,0 ,0 , .5);
+		&__box{
+			width: 750rpx;
+			background-color: #fff;
+			position: absolute;
+			bottom: 0;
+			height: 60vh;
+			border-radius: 20rpx 20rpx 0 0;
+			box-sizing: border-box;
+			padding: 0 20rpx;
+		}
+		&__lab{
+			margin-top: 15rpx;
+			margin-left: 5rpx;
+			label{
+				font-size: 26rpx;
+				color: #666;
+			}
+			.list{
+				margin-top: 20rpx;
+				margin-bottom: 20rpx;
+				text{
+					display: inline-flex;
+					height: 40rpx;
+					color: #999;
+					background-color: #efefef;
+					border:1rpx solid #cfcfcf;
+					font-size: 26rpx;
+					border-radius: 5rpx;
+					padding: 0 18rpx;
+					line-height: 40rpx;
+					justify-content: center;
+					align-items: center;
+					margin-right: 22rpx;
+					margin-bottom: 12rpx;
+					&.on{
+						color: #fff;
+						background-color: #f12b5f;
+					}
+				}
+			}
+		}
+		&__stock {
+			margin-top: 15rpx;
+			margin-left: 5rpx;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			label{
+				font-size: 26rpx;
+				color: #666;
+			}
+			.calc{
+				display: inline-flex;
+				width: 200rpx;
+				height: 60rpx;
+				background-color: #efefef;
+				justify-content: center;
+				align-items: center;
+				line-height: normal;
+				text{
+					display: flex;
+					flex: 1;
+					align-items: center;
+					justify-content: center;
+					font-size: 30rpx;
+				}
+			}
+		}
+		&__info {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			border-bottom: 1rpx solid #efefef;
+			position: relative;
+			padding:20rpx 30rpx 20rpx 0;
+			.pic {
+				background-color: #fff;
+				border-radius: 10rpx;
+				border: 10rpx solid #efefef;
+				width: 200rpx;
+				height: 200rpx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+				image {
+					width: 100%;
+					height: auto;
+				}
+			}
+			.desc{
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+				justify-content: space-between;
+				align-items: flex-start;
+				margin-left: 20rpx;
+				font-size: 26rpx;
+				.name{
+					font-size: 32rpx;
+					font-weight: bold;
+				}
+				.price{
+					font-size: 30rpx;
+					color: red;
+					display: flex;
+					flex: 1;
+					width: 100%;
+					justify-content: space-between;
+					align-items: center;
+					margin: 10rpx 0;
+					font-weight: bold;
+				}
+				.stock{
+					color: #666;
+					font-size: 26rpx;
+				}
+				.select{
+					color: #999;
+				}
+			}
+		}
+
+	}
 }

@@ -1,13 +1,13 @@
 {
 	"pages": [
 		"pages/index/index",
-		"pages/logs/logs",
-		"pages/user/user",
-		"pages/list/list",
+		"pages/user/index",
 		"pages/catalog/index",
 		"pages/cart/index",
 		"pages/search/index",
-		"pages/goods/index"
+		"pages/goods/index",
+		"pages/order/index",
+		"pages/payInfo/index"
 	],
 	"window": {
 		"backgroundTextStyle": "light",
@@ -33,7 +33,7 @@
 			"iconPath": "images/tab/cart.png",
 			"selectedIconPath": "images/tab/cart-on.png"
 		  },{
-			"pagePath": "pages/user/user",
+			"pagePath": "pages/user/index",
 			"text": "我的",
 			"iconPath": "images/tab/user.png",
 			"selectedIconPath": "images/tab/user-on.png"

@@ -1,4 +1,6 @@
-import './utils/init'
+// import './utils/init'
+import wxs from './utils/wxs'
+wx.utils = wxs
 App({
 	onLaunch() {
 		// console.log(camelCase('OnLaunch'));
@@ -37,3 +39,4 @@ App({
 		userInfo: null,
 	}
 });
+

@@ -1,3 +1,66 @@
-<view class="container">
-	Page user
+<view class="product">
+  <view class="product_pic">
+    <image src="{{productInfo.thumb}}" mode="widthFix" />
+  </view>
+  <view class="product_info">
+    <view class="product_info__name">{{productInfo.title}}</view>
+    <view class="product_info__desc">{{productInfo.desc}}</view>
+  </view>
+  <view class="product_price">
+    <view class="product_price__yuan">￥<text>999</text></view>
+    <view class="product_saled">已售299</view>
+  </view>
+  <view class="product_select">
+    已选： 大果4件 2件
+  </view>
+  <view class="product_details">
+    商品详情
+  </view>
+  <view class="product_footer">
+    <view class="product_footer__cart">
+      <view class="cart_icon">
+        <image mode="widthFix" src="../../images/cart/cart-small.png" />
+        <text>99</text></view>
+      购物车
+    </view>
+    <view class="product_footer__tocart">加入购物车</view>
+    <view class="product_footer__buy">立即购买</view>
+  </view>
+  <view class="product_skupop">
+    <view class="product_skupop__box">
+      <view class="product_skupop__info">
+        <view class="pic">
+          <image src="{{productInfo.thumb}}" mode="widthFix" />
+        </view>
+        <view class="desc">
+          <view class="name">{{productInfo.title}}</view>
+		  <view class="price"><text>￥990</text><text class="stock">库存：10件</text></view>
+		  <view class="select">已经选择：</view>
+        </view>
+      </view>
+      <view class="product_skupop__lab">
+		<label>选择规格</label>
+		<view class="list">
+			<text>颜色1</text>
+			<text>颜色1</text>
+			<text>颜色1</text>
+		</view>
+	  </view>
+	  <view class="product_skupop__lab">
+		<label>颜色</label>
+		<view class="list">
+			<text>颜色1</text>
+			<text>颜色1</text>
+		</view>
+      </view>
+      <view class="product_skupop__stock">
+        <label>选择规格</label>
+        <view class="calc">
+          <text>-</text>
+          <view>1</view>
+          <text>+</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

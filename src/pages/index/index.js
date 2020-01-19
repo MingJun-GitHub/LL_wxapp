@@ -31,8 +31,8 @@ Page({
 	},
 	// 获取首页商品列表
 	async getHomeGoodsList() {
-		const res = await wxs.http.get({url: `/home/listProductPage?pageNo=1&pageSize=20&productGroupId=2`});
-		console.log('res--->', res, res.code === 0);
+		const res = await wx.utils.http.get({url: `/home/listProductPage?pageNo=1&pageSize=20&productGroupId=2`});
+		// console.log('res--->', res, res.code === 0);
 		if (res.code==0) {
 			this.setData({
 				goodsList: res.data.records
