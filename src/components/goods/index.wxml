@@ -1,13 +1,13 @@
 <view class="goods_item">
   <view class="goods_item__pic">
-    <image src="../../images/goods/default.png" mode="widthFix" />
+    <image src="{{data.thumb?data.thumb:'../../images/goods/default.png'}}" mode="widthFix" />
   </view>
   <view class="goods_item__name">
-    商品描述，最多两行，超出部分用...
+    {{data.title}}
   </view>
   <view class="goods_item__price">
-    <text class="price_o">￥42</text>
-    <text class="price_del">￥88</text>
+    <text class="price_o">￥{{data.price}}</text>
+    <text class="price_del">￥{{data.deleted}}</text>
     <view class="goods_addcart">+</view>
   </view>
 </view>

@@ -6,7 +6,8 @@
 		"pages/list/list",
 		"pages/catalog/index",
 		"pages/cart/index",
-		"pages/search/index"
+		"pages/search/index",
+		"pages/goods/index"
 	],
 	"window": {
 		"backgroundTextStyle": "light",
@@ -15,6 +16,7 @@
 		"navigationBarTextStyle": "black"
 	},
 	"tabBar": {
+		"selectedColor": "#f12b5f",
 		"list": [{
 		  "pagePath": "pages/index/index",
 		  "text": "首页",

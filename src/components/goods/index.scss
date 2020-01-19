@@ -3,6 +3,7 @@
     background-color: #fff;
     box-shadow: 0rpx 10rpx 10rpx rgba(0, 0 , 0 ,.1);
     margin-bottom: 15rpx;
+    padding-bottom: 20rpx;
 	&__pic {
 		display: flex;
 		justify-content: center;
@@ -37,6 +38,9 @@
             font-size: 28rpx;
             color: #f12b5f;
             margin-right: 10rpx;
+        }
+        .price_del{
+            text-decoration: line-through;
         }
         .goods_addcart{
             width: 42rpx;
