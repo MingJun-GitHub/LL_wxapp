@@ -16,6 +16,95 @@
 			height: auto;
 		}
 	}
+	&_price{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		color: #f12b5f;
+		font-size: 32rpx;
+		padding: 10rpx 30rpx;
+		line-height: normal;
+		&__yuan{
+			font-weight: 500;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			line-height: normal;
+			font-size: 36rpx;
+		}
+		text{
+			display: inline-flex;
+			justify-content: center;
+			line-height: normal;
+			align-items: center;
+			font-weight: normal;
+		}
+		button{
+			background: transparent;
+			border: none;
+			font-weight: normal;
+			padding: 0;
+			margin: 0;
+			font-size: 26rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			image{
+				width: 35rpx;
+				height: auto;
+			}
+			&::after{
+				display: none;
+			}
+		}
+		.tag{
+			height: 38rpx;
+			line-height: normal;
+			background: #000000;
+			color: #fff;
+			font-size: 20rpx;
+			margin-left: 12rpx;
+			padding: 0 12rpx;
+			border-radius: 6rpx;
+		}
+	}
+	&_info {
+		padding: 0 20rpx 30rpx;
+		&__name{
+			font-size: 36rpx;
+			color: #000000;
+			font-weight: 500;
+		}
+		&__desc{
+			font-size: 26rpx;
+			color: #999;
+			margin-top: 6rpx;
+		}
+	}
+	&_select{
+		border-top: 10rpx solid #efefef;
+		font-size: 32rpx;
+		color: #000;
+		padding: 30rpx 20rpx;
+		border-bottom: 10rpx solid #efefef;
+	}
+
+	&_details{
+		&__title{
+			font-size: 32rpx;
+			border-bottom: 1rpx solid #efefef;
+			padding:30rpx 20rpx;
+		}
+		&__list{
+			image{
+				width: 100%;
+				height: auto;
+				border: none;
+				margin: 0 auto;
+				padding: 0;
+			}
+		}
+	}
 
 	&_footer {
 		background-color: #fff;

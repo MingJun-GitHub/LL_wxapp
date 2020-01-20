@@ -2,19 +2,24 @@
   <view class="product_pic">
     <image src="{{productInfo.thumb}}" mode="widthFix" />
   </view>
+  <view class="product_price">
+    <view class="product_price__yuan">￥999<text class="tag">热门推荐</text></view>
+    <view class="product_price__share">
+      <button><image mode="widthFix" src="../../images/goods/share.png" />分享</button>
+    </view>
+  </view>
   <view class="product_info">
     <view class="product_info__name">{{productInfo.title}}</view>
-    <view class="product_info__desc">{{productInfo.desc}}</view>
+    <view class="product_info__desc">{{productInfo.productDescription}}</view>
   </view>
-  <view class="product_price">
-    <view class="product_price__yuan">￥<text>999</text></view>
-    <view class="product_saled">已售299</view>
-  </view>
-  <view class="product_select">
+  <view class="product_select" bindtap="openSku">
     已选： 大果4件 2件
   </view>
   <view class="product_details">
-    商品详情
+    <view class="product_details__title">商品详情</view> 
+    <view class="product_details__list">
+       <image src="{{item.imgurl}}" wx:for="{{imgList}}" wx:key="index" wx:for-item="item" wx:for-index="index" mode="widthFix" />
+    </view>
   </view>
   <view class="product_footer">
     <view class="product_footer__cart">
@@ -26,7 +31,7 @@
     <view class="product_footer__tocart">加入购物车</view>
     <view class="product_footer__buy">立即购买</view>
   </view>
-  <view class="product_skupop">
+  <view class="product_skupop" wx:if="{{showSku}}">
     <view class="product_skupop__box">
       <view class="product_skupop__info">
         <view class="pic">
@@ -34,27 +39,18 @@
         </view>
         <view class="desc">
           <view class="name">{{productInfo.title}}</view>
-		  <view class="price"><text>￥990</text><text class="stock">库存：10件</text></view>
-		  <view class="select">已经选择：</view>
+          <view class="price"><text>￥990</text><text class="stock">库存：10件</text></view>
+          <view class="select">已经选择：</view>
         </view>
       </view>
-      <view class="product_skupop__lab">
-		<label>选择规格</label>
-		<view class="list">
-			<text>颜色1</text>
-			<text>颜色1</text>
-			<text>颜色1</text>
-		</view>
-	  </view>
-	  <view class="product_skupop__lab">
-		<label>颜色</label>
-		<view class="list">
-			<text>颜色1</text>
-			<text>颜色1</text>
-		</view>
+      <view class="product_skupop__lab" wx:for="{{skuInfo.tree}}" wx:key="index" wx:for-item="item" wx:for-index="index">
+        <label>选择{{item.k}}</label>
+        <view class="list">
+          <text class="{{index2}}" data-item="{{item}}" data-sku="{{item2}}" wx:for="{{item.v}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2">{{item2.skuValue}}</text>
+        </view>
       </view>
       <view class="product_skupop__stock">
-        <label>选择规格</label>
+        <label>选择数量</label>
         <view class="calc">
           <text>-</text>
           <view>1</view>
