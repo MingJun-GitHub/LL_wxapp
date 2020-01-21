@@ -23,7 +23,8 @@
         <text>{{title}}</text>
       </block>
       <view class='lxy-nav-bar-search' style="height:{{capsulePosition.height}}px;" wx:elif="{{searchBar}}" bindtap="search">
-        <view class='lxy-nav-bar-search__icon' />
+        <!-- <view class='lxy-nav-bar-search__icon' /> -->
+        <image src="./images/search.png" mode="widthFix" class='lxy-nav-bar-search__icon' />
         <view class='lxy-nav-bar-search__input'>{{searchText}}</view>
       </view>
       <!-- 暂时不开发标题loading. 看后期需要 -->

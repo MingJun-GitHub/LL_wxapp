@@ -1,16 +1,25 @@
 <view class='catelog'>
   <view class='catelog_left'>
     <scroll-view scroll-y>
-      <block wx:for="{{list}}" wx:key="list">
-        <view bindtap='clickScroll' data-id="{{item}}">{{item}}</view>
+      <block wx:for="{{categoryList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
+        <view bindtap='clickScroll' data-id="{{item.id}}">{{item.categoryName}}</view>
       </block>
     </scroll-view>
   </view>
   <view class='catelog_right'>
-    <scroll-view scroll-y scroll-into-view="{{toView}}" scroll-with-animation="true">
-      <block wx:for="{{list}}" wx:key="list">
-        <view bindtap='clickScroll' id="{{item}}">{{item}}</view>
-      </block>
+  <!-- scroll-into-view="{{toView}}"  -->
+    <scroll-view scroll-y scroll-with-animation="true">
+      <view class="catelog_item" wx:for="{{goodsList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
+         <view class="catelog_item__pic"><image src="{{item.thumb}}" mode="widthFix" /></view>
+         <view class="catelog_item__info">
+             <view class="title">{{item.title}}</view>
+             <view class="desc">{{item.productDescription || '暂无描述'}}</view>
+             <view class="price">{{item.price}}</view>
+         </view>
+      </view>
+      <!-- <block wx:for="{{goodsList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
+        <view bindtap='clickScroll' data-id="{{item}}">{{item}}</view>
+      </block> -->
     </scroll-view>
   </view>
 </view>

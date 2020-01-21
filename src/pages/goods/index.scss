@@ -31,6 +31,7 @@
 			justify-content: center;
 			line-height: normal;
 			font-size: 36rpx;
+			letter-spacing: 0;
 		}
 		text{
 			display: inline-flex;
@@ -71,27 +72,35 @@
 	&_info {
 		padding: 0 20rpx 30rpx;
 		&__name{
-			font-size: 36rpx;
+			font-size: 32rpx;
 			color: #000000;
 			font-weight: 500;
 		}
 		&__desc{
-			font-size: 26rpx;
+			font-size: 28rpx;
 			color: #999;
 			margin-top: 6rpx;
 		}
 	}
 	&_select{
 		border-top: 10rpx solid #efefef;
-		font-size: 32rpx;
+		font-size: 28rpx;
 		color: #000;
 		padding: 30rpx 20rpx;
 		border-bottom: 10rpx solid #efefef;
+		position: relative;
+		image{
+			position: absolute;
+			width: 25rpx;
+			right: 20rpx;
+			top: 50%;
+			transform: translateY(-50%);
+		}
 	}
 
 	&_details{
 		&__title{
-			font-size: 32rpx;
+			font-size: 28rpx;
 			border-bottom: 1rpx solid #efefef;
 			padding:30rpx 20rpx;
 		}
@@ -108,7 +117,7 @@
 
 	&_footer {
 		background-color: #fff;
-		border-top: 1rpx solid #efefef;
+		// border-top: 1rpx solid #efefef;
 		position: fixed;
 		width: 750rpx;
 		height: 103rpx;
@@ -193,6 +202,15 @@
 			border-radius: 20rpx 20rpx 0 0;
 			box-sizing: border-box;
 			padding: 0 20rpx;
+			.skupop_close{
+				width: 35rpx;
+				height: 35rpx;
+				position: absolute;
+				top: 25rpx;
+				right: 40rpx;
+				opacity: .7;
+				z-index: 10;
+			}
 		}
 		&__lab{
 			margin-top: 15rpx;
@@ -206,21 +224,23 @@
 				margin-bottom: 20rpx;
 				text{
 					display: inline-flex;
-					height: 40rpx;
+					height: 46rpx;
 					color: #999;
-					background-color: #efefef;
+					background-color: #fff;
 					border:1rpx solid #cfcfcf;
 					font-size: 26rpx;
 					border-radius: 5rpx;
 					padding: 0 18rpx;
-					line-height: 40rpx;
+					// line-height: 46rpx;
 					justify-content: center;
 					align-items: center;
 					margin-right: 22rpx;
+					line-height: normal;
 					margin-bottom: 12rpx;
 					&.on{
 						color: #fff;
 						background-color: #f12b5f;
+						border:1rpx solid #f12b5f;
 					}
 				}
 			}
@@ -239,7 +259,7 @@
 				display: inline-flex;
 				width: 200rpx;
 				height: 60rpx;
-				background-color: #efefef;
+				background-color: #fff;
 				justify-content: center;
 				align-items: center;
 				line-height: normal;
@@ -298,14 +318,42 @@
 					font-weight: bold;
 				}
 				.stock{
-					color: #666;
+					color: #999;
 					font-size: 26rpx;
+					font-weight: normal;
 				}
 				.select{
 					color: #999;
 				}
 			}
 		}
-
+		&__fbtn{
+			position: absolute;
+			bottom: 20rpx;
+			width: 710rpx;
+			height: 80rpx;
+			background-color: #efefef;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 8rpx;
+			overflow: hidden;
+			view {
+				display: flex;
+				justify-content: center;
+				height: 100%;
+				line-height: normal;
+				align-items: center;
+				flex: 1;
+				color: #fff;
+				font-size: 32rpx;
+			}
+			.btn_addcart{
+				background: #f12b5f;
+			}
+			.btn_buy{
+				background: #000;
+			}
+		}
 	}
 }

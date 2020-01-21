@@ -1,3 +1,5 @@
 {
-	"navigationBarTitleText": "搜索商品"
+	"navigationBarTitleText": "搜索商品",
+	"navigationBarTextStyle": "white",
+	"navigationBarBackgroundColor": "#f12a5f"
 }

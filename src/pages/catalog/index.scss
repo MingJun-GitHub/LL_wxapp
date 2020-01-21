@@ -3,11 +3,49 @@
 	flex-direction: row;
 	height: 100%;
 	width: 750rpx;
+	&_item{
+		margin: 20rpx;
+		display: flex;
+		background-color:#fff;
+		border:1rpx solid #efefef;
+		padding: 12rpx;
+		&__pic{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			width: 190rpx;
+			height: 190rpx;
+			background-color: #efefef;
+		}
+		image {
+			width: 100%;
+		}
+		&__info{
+			position: relative;
+			box-sizing: border-box;
+			margin-left: 25rpx;
+			.title{
+				font-size: 32rpx;
+				font-weight: 500;
+				color: #000;
+			}
+			.desc{
+				font-size: 26rpx;
+				color: #999;
+			}
+			.price{
+				position: absolute;
+				bottom: 0;
+			}
+		}
+	}
 	&_left{
 		width: 170rpx;
 		height: 100vh;
 		scroll-view {
 			height: 100vh;
+			background-color: #f8f8f8;
 		}
 		view {
 			text-align: center;
@@ -15,6 +53,9 @@
 			background-color: #f8f8f8;
 			height: 88rpx;
 			line-height: 88rpx;
+			&.on{
+				background-color: #fff;
+			}
 		}
 	}
 	&_right{
@@ -23,6 +64,8 @@
 		height: 100vh;
 		scroll-view {
 			height: 100vh;
+			background-color: #fff;
 		}
 	}
+	
 }

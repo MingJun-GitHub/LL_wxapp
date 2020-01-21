@@ -2,13 +2,12 @@ import {
 	promisify,
 	debounce
 } from './util'
-import http from './request'
+import Http from './request'
 import triggerbus from 'triggerbus'
-console.log('http://', http)
-
 function Toast(title, duration = 2000) {
-	wx.showLoading({
+	wx.showToast({
 		title,
+		mask: false,
 		icon: 'none',
 		duration
 	})
@@ -31,10 +30,10 @@ const wxPro = {
 	Toast,
 	Loading,
 	promisify,
-	http,
+	Http,
 	debounce,
 	Bus: triggerbus(), // 来个发布订阅吧
-	...baseObj
+	...baseObj,
 }
 
 export default wxPro
