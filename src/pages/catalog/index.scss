@@ -3,69 +3,117 @@
 	flex-direction: row;
 	height: 100%;
 	width: 750rpx;
-	&_item{
+
+	&_item {
 		margin: 20rpx;
 		display: flex;
-		background-color:#fff;
-		border:1rpx solid #efefef;
+		background-color: #fff;
+		border: 1rpx solid #efefef;
 		padding: 12rpx;
-		&__pic{
+		border-radius: 4rpx;
+
+		&__pic {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			overflow: hidden;
-			width: 190rpx;
-			height: 190rpx;
+			width: 150rpx;
+			height: 150rpx;
 			background-color: #efefef;
 		}
+
 		image {
 			width: 100%;
 		}
-		&__info{
+
+		&__info {
 			position: relative;
 			box-sizing: border-box;
 			margin-left: 25rpx;
-			.title{
+			font-size: 26rpx;
+
+			.title {
 				font-size: 32rpx;
 				font-weight: 500;
 				color: #000;
 			}
-			.desc{
+
+			.desc {
 				font-size: 26rpx;
 				color: #999;
 			}
-			.price{
+
+			.price {
 				position: absolute;
 				bottom: 0;
+				color: #f12a5f;
+
+				.yuan {
+					font-size: 20rpx;
+				}
 			}
 		}
+
 	}
-	&_left{
+
+	&_left {
 		width: 170rpx;
 		height: 100vh;
+
 		scroll-view {
 			height: 100vh;
 			background-color: #f8f8f8;
 		}
+
 		view {
 			text-align: center;
 			color: #333;
 			background-color: #f8f8f8;
 			height: 88rpx;
 			line-height: 88rpx;
-			&.on{
+			position: relative;
+			&.on {
 				background-color: #fff;
+				color: #f12a5f;
+				&::before{
+					height: 40rpx;
+					width: 5rpx;
+					background: #f12a5f;
+					display: block;
+					left: 12rpx;
+					content: "";
+					top: 50%;
+					transform: translateY(-50%);
+					position: absolute;
+				}
 			}
 		}
 	}
-	&_right{
+
+	&_right {
 		// display: flex;
 		flex: 1;
 		height: 100vh;
+
 		scroll-view {
 			height: 100vh;
 			background-color: #fff;
 		}
 	}
-	
+
+	&_empty {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		font-size: 26rpx;
+		color: #999;
+		flex: 1;
+		height: 40vh;
+
+		image {
+			width: 200rpx;
+			margin-bottom: 20rpx;
+		}
+	}
 }

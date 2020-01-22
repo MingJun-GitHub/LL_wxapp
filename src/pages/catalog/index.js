@@ -6,17 +6,24 @@ Page({
 		pageSize: 20,
 		categoryList: [],
 		goodsList: [],
+		tabIndex: 0,
+		loading: false
 	},
-	clickScroll: function (e) {
-		var id = e.currentTarget.dataset.id
-		this.getCategoryData(id)
-		// this.setData({
-		// 	toView: id
-		// })
-		// clickScroll
-		// console.log(e.currentTarget.dataset);
+	async clickScroll(e) {
+		var {id,index} = e.currentTarget.dataset
+		await this.getCategoryData(id)
+		this.setData({
+			tabIndex: index
+		})
 	},
 	async getCategoryData(productGroupId) {
+		if (this.data.loading) {
+			return
+		}
+		wx.utils.Loading()
+		this.setData({
+			loading: true
+		})
 		const res = await wx.utils.Http.get({
 			url: `/home/listProductPage`,
 			data: {
@@ -24,6 +31,10 @@ Page({
 				pageSize: this.data.pageSize,
 				productGroupId
 			}
+		})
+		wx.utils.hideLoading()
+		this.setData({
+			loading: false
 		})
 		if (res.code === 0) {
 			this.setData({
@@ -40,11 +51,18 @@ Page({
 			this.setData({
 				categoryList: res.data
 			})
+			this.getCategoryData(res.data[this.data.tabIndex].id) // 默认第一个
 		}		
 	},
+	goGoods(e) {
+		const {item} = e.currentTarget.dataset
+	    wx.navigateTo({
+			url: `/pages/goods/index?id=${item.id}`
+		})
+	},
 	async onLoad(parmas) {
-		console.log(parmas)
+		// console.log(parmas)
 		await this.getAllCategory()
-		this.getCategoryData(11)
+		// this.getCategoryData(1)
 	}
 });

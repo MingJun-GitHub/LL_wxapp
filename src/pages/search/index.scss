@@ -1,7 +1,7 @@
 .search {
 	width: 750rpx;
 	min-height: 100vh;
-	background-color: #dfdfdf;
+	background-color: #efefef;
 	&_bar{
 		background-color: #fff;
 		width: 100%;
@@ -35,6 +35,9 @@
 			margin: 0;
 			border: none !important;
 			border: 1rpx solid #fff;
+			&::after{
+				display: none;
+			}
 			// bord;
 		}
 	}

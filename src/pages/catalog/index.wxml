@@ -2,21 +2,31 @@
   <view class='catelog_left'>
     <scroll-view scroll-y>
       <block wx:for="{{categoryList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
-        <view bindtap='clickScroll' data-id="{{item.id}}">{{item.categoryName}}</view>
+        <view class="{{index==tabIndex?'on':''}}" bindtap='clickScroll' data-index="{{index}}" data-id="{{item.id}}">{{item.categoryName}}</view>
       </block>
     </scroll-view>
   </view>
   <view class='catelog_right'>
-  <!-- scroll-into-view="{{toView}}"  -->
+    <!-- scroll-into-view="{{toView}}"  -->
     <scroll-view scroll-y scroll-with-animation="true">
-      <view class="catelog_item" wx:for="{{goodsList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
-         <view class="catelog_item__pic"><image src="{{item.thumb}}" mode="widthFix" /></view>
-         <view class="catelog_item__info">
-             <view class="title">{{item.title}}</view>
-             <view class="desc">{{item.productDescription || '暂无描述'}}</view>
-             <view class="price">{{item.price}}</view>
-         </view>
-      </view>
+      <block wx:if="{{goodsList && goodsList.length}}">
+        <view bindtap="goGoods" data-item="{{item}}" class="catelog_item" wx:for="{{goodsList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
+          <view class="catelog_item__pic">
+            <image src="{{item.thumb}}" mode="widthFix" />
+          </view>
+          <view class="catelog_item__info">
+            <view class="title">{{item.title}}</view>
+            <view class="desc">{{item.productDescription || '暂无描述'}}</view>
+            <view class="price"><text class="yuan">￥</text>{{item.price}}</view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="catelog_empty">
+          <image src="../../images/empty.png" mode="widthFix" />
+          暂无商品
+        </view>
+      </block>
       <!-- <block wx:for="{{goodsList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
         <view bindtap='clickScroll' data-id="{{item}}">{{item}}</view>
       </block> -->
