@@ -11,6 +11,10 @@ Component({
 			wx.navigateTo({
 				url: `/pages/goods/index?id=${item.id}`
 			})
+		},
+		async addCollection(e) {
+			let {item} = e.currentTarget.dataset
+			await wx.utils.addCollect(item.id)
 		}
 	}
 });

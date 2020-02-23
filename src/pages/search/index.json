@@ -1,5 +1,8 @@
 {
-	"navigationBarTitleText": "搜索商品",
-	"navigationBarTextStyle": "white",
-	"navigationBarBackgroundColor": "#f12a5f"
+  "navigationBarTitleText": "搜索商品",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#f12a5f",
+  "usingComponents": {
+    "goods": "../../components/goods/index"
+  }
 }

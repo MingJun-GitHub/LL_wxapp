@@ -2,16 +2,19 @@
 	width: 750rpx;
 	min-height: 100vh;
 	background-color: #efefef;
-	&_bar{
+
+	&_bar {
 		background-color: #fff;
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 22rpx;
+		padding: 22rpx 0rpx 22rpx 22rpx;
 		box-sizing: border-box;
-		
-		input{
+		border-bottom: 1rpx solid #efefef;
+		position: relative;
+		z-index: 5;
+		input {
 			width: 600rpx;
 			height: 64rpx;
 			color: #333;
@@ -21,27 +24,91 @@
 			padding: 5rpx 15rpx;
 			box-sizing: border-box;
 			border: none;
-			border-radius: 3rpx;
+			border-radius: 8rpx;
 
 		}
-		button{
+
+		button {
 			border-radius: none;
-			width: 100rpx;
+			width: 122rpx;
 			height: 64rpx;
 			font-size: 28rpx;
 			color: #333;
 			background-color: transparent;
 			padding: 0;
 			margin: 0;
-			border: none !important;
-			border: 1rpx solid #fff;
-			&::after{
-				display: none;
-			}
-			// bord;
+			text-align: center;
+			line-height: 64rpx;
+			font-weight: 500;
 		}
 	}
-	&_empty{
+	&_mask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0,0,0,.5);
+		z-index: 1;
+		margin: 0 auto;
+	}
+	&_history {
+		background: #fff;
+		padding: 4rpx 22rpx 30rpx;
+		position: absolute;
+		top: 109rpx;
+		width: 100%;
+		z-index: 2;
+		box-sizing: border-box;
+		&__tit {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 28rpx;
+			color: #333;
+			line-height: normal;
+			height: 60rpx;
+			font-weight: 500;
+			margin-bottom: 10rpx;
+			margin-top: 22rpx;
+			&:nth-of-type(2) {
+				margin-top: 20rpx;
+			}
+			.clear {
+				font-size: 26rpx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				line-height: normal;
+				color: #999;
+
+				image {
+					width: 36rpx;
+				}
+			}
+		}
+
+		&__list,&__hot{
+			text {
+				font-size: 24rpx;
+				display: inline-flex;
+				padding: 5rpx 18rpx;
+				color: #666;
+				background-color: rgba(236, 234, 234, 1);
+				border-radius: 7rpx;
+				font-size: 26rpx;
+				justify-content: center;
+				align-items: center;
+				margin-right: 12rpx;
+				margin-bottom: 13rpx;
+			}
+		}
+		&__list{
+			margin-bottom: 20rpx;
+		}
+	}
+
+	&_empty {
 		width: 750rpx;
 		height: 750rpx;
 		display: flex;
@@ -51,9 +118,20 @@
 		flex-direction: column;
 		color: #f12b5f;
 		font-size: 28rpx;
-		image{
+
+		image {
 			width: 600rpx;
 			height: auto;
 		}
+	}
+
+	&_list {
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		padding: 20rpx;
+
 	}
 }

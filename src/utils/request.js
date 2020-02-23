@@ -3,7 +3,8 @@ import config from './config'
 
 import {
 	promisify
-} from './util'
+}
+from './util'
 
 
 class Http {
@@ -11,12 +12,13 @@ class Http {
 	constructor() {
 		this.baseUrl = config.baseUrl
 		this.params = {
-			method: 'POST',
-			header: {
-				'content-type': 'application/x-www-form-urlencoded'
-			}
-		}
-		this.requestCommon = promisify(wx.request)
+				method: 'POST',
+				header: {
+					// x-www-form-urlencoded
+					'content-type': 'application/json'
+				}
+			},
+			this.requestCommon = promisify(wx.request)
 		this.uploadCommon = promisify(wx.uploadFile)
 	}
 	async get(params) {
@@ -33,6 +35,7 @@ class Http {
 	}
 	async request(params) {
 		const res = await this.requestCommon(this.dealParams(params))
+		console.log('<--logs-->', this.params, res)
 		return this.returnData(res)
 	}
 	// 上传工具
@@ -43,7 +46,11 @@ class Http {
 		return this.returnData(res)
 	}
 	dealParams(params) {
-		params = Object.assign(this.params, params)
+		this.params.header.token = wx.utils.Login.toekn || wx.getStorageSync('loginInfo').token || ''
+		params = Object.assign({
+			...this.params
+		}, params)
+		// console.log('params--->', params)
 		if (!/^http(s)?:\/\/.+/.test(params.url)) {
 			params.url = this.baseUrl + params.url
 		}

@@ -2,7 +2,7 @@
 <view class="index">  
   <navbar searchBar="{{true}}" searchText="请输入商品名称"  background="{{backgroundColorTop}}" backgroundColorTop="{{backgroundColorTop}}" ext-class="index_bar" back="{{false}}" home="{{false}}" bindsearch="goSearch"></navbar>
   <view class="index_topbar">
-    <image src="../../images/index/index_topbar.png" mode="widthFix"></image>
+    <image src="{{banner}}" mode="widthFix"></image>
   </view>
   <!-- <button bindgetuserinfo="getUserinfo" open-type="getUserInfo">拿用户信息</button> -->
    <!-- <button bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">手机号</button> -->

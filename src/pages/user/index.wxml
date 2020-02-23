@@ -1,82 +1,84 @@
 <view class="user">
-	<view class="head">
-		<view class="user-info">
-			<view class="user-fl"><image src="https://avatars0.githubusercontent.com/u/23654670?s=88&v=4" alt="头像"  class="user-img"/></view>
-			<view class="user-fr">
-				<view >登录</view>
-				<em>/</em>
-				<view >注册</view>
-			</view>
-		</view>
-	</view>
-	<view class="content">
-		<view class="order-list">
-			<view class="order-top">
-				<text class="title">我的订单</text>
-				<view class="more">全部订单 》</view>
-			</view>
-			<view class="order-mid">
-				<view class="item-li">
-					<image class="img-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="name">待付款</text>
-				</view>
-				<view class="item-li">
-					<image class="img-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="name">待发货</text>
-				</view>
-				<view class="item-li">
-					<image class="img-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="name">待收货</text>
-				</view>
-				<view class="item-li">
-					<image class="img-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="name">待评价</text>
-				</view>
-				<view class="item-li">
-					<image class="img-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="name">售后/退款</text>
-				</view>
-			</view>
-		</view>
-		<view class="server-list">
-			<view class="server-title">我的服务</view>
-			<view class="server-ul">
-				<view class="server-li">
-					<view class="tag-left">
-					<image class="server-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="text">邀请好友</text>
-					</view>					
-					<i class="more-icon">></i>
-				</view>
-				<view class="server-li">
-					<view class="tag-left">
-					<image class="server-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="text">开通会员</text>
-					</view>					
-					<i class="more-icon">></i>
-				</view>
-				<view class="server-li">
-					<view class="tag-left">
-					<image class="server-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="text">收货地址</text>
-					</view>					
-					<i class="more-icon">></i>
-				</view>
-				<view class="server-li">
-					<view class="tag-left">
-					<image class="server-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="text">客户和帮助</text>
-					</view>					
-					<i class="more-icon">></i>
-				</view>
-				<view class="server-li">
-					<view class="tag-left">
-					<image class="server-icon" src="https://img.xiaopiu.com/userImages/img1965616f83dfd8f8.png"></image>
-					<text class="text">设置</text>
-					</view>					
-					<i class="more-icon">></i>
-				</view>
-			</view>
-		</view>
-	</view>
+  <view class="user_info" bindtap="goLogin">
+      <view class="user_info__header">
+        <image wx:if="{{!isLogin}}" src="../../images/user/user.png" class="isLogin" mode="widthFix" />
+        <image wx:else src="{{userInfo.userLogo}}" mode="widthFix" />
+      </view>
+      <text>{{isLogin?userInfo.nickName:'登录/注册'}}</text>
+      <view class="user_info__bindphone" wx:if="{{isLogin && !phone }}" bindtap="goBindPhone"><image src="../../images/mobile.png" mode="widthFix"/>绑定手机号</view>
+  </view>
+  <view class="user_menu">
+    <view class="user_menu__top">
+      <text class="title">我的订单</text>
+      <!-- <view class="more" data-status="7" bindtap="goOrderList">全部订单
+        <image src="../../images/arrow_right.png" mode="widthFix" />
+      </view> -->
+    </view>
+    <view class="user_menu__item">
+     <view class="item" data-status="7" bindtap="goOrderList">
+        <image class="img-icon" src="../../images/user/menu-7.png"></image>
+        <text class="name">全部</text>
+      </view>
+      <view class="item" data-status="0" bindtap="goOrderList">
+        <image src="../../images/user/menu-1.png"></image>
+        <text class="name">待付款</text>
+      </view>
+      <view class="item" data-status="1" bindtap="goOrderList">
+        <image class="img-icon" src="../../images/user/menu-2.png"></image>
+        <text class="name">待发货</text>
+      </view>
+      <view class="item" data-status="2" bindtap="goOrderList">
+        <image class="img-icon" src="../../images/user/menu-3.png"></image>
+        <text class="name">已发货</text>
+      </view>
+      
+     
+      <!--
+       <view class="item" data-status="3" bindtap="goOrderList">
+        <image class="img-icon" src="../../images/user/menu-4.png"></image>
+        <text class="name">待评价</text>
+      </view>
+       <view class="item">
+        <image class="img-icon" src="../../images/user/menu-5.png"></image>
+        <text class="name">售后/退款</text>
+      </view> -->
+    </view>
+  </view>
+  <view class="user_server">
+    <view class="user_server__title">我的服务</view>
+    <view class="user_server__list">
+      <!-- <view class="item" bindtap="noOpen">
+        <image class="icon" src="../../images/user/icon-1.png" mode="widthFix" />
+        <text class="text">邀请好友</text>
+        <image class="arrow" src="../../images/arrow_right.png" mode="widthFix" />
+      </view> -->
+      <!-- <view class="item" bindtap="noOpen">
+        <image class="icon" src="../../images/user/icon-2.png" mode="widthFix" />
+        <text class="text">开通会员</text>
+        <image class="arrow" src="../../images/arrow_right.png" mode="widthFix" />
+      </view> -->
+      <view class="item" bindtap="goMyCollect">
+        <image class="icon" src="../../images/tab/collection.png" mode="widthFix" />
+        <text class="text">我的收藏</text>
+        <image class="arrow" src="../../images/arrow_right.png" mode="widthFix" />
+      </view>
+      <view class="item" bindtap="goAddressList">
+        <image class="icon" src="../../images/user/icon-3.png" mode="widthFix" />
+        <text class="text">收货地址</text>
+        <image class="arrow" src="../../images/arrow_right.png" mode="widthFix" />
+      </view>
+      <view class="item">
+        <button open-type="contact"></button>
+        <image class="icon" src="../../images/user/icon-4.png" mode="widthFix" />
+        <text class="text">客户和帮助</text>
+        <image class="arrow" src="../../images/arrow_right.png" mode="widthFix" />
+      </view>
+      <view class="item">
+        <button open-type="feedback"></button>
+        <image class="icon" src="../../images/user/icon-5.png" mode="widthFix" />
+        <text class="text">反馈</text>
+        <image class="arrow" src="../../images/arrow_right.png" mode="widthFix" />
+      </view>
+    </view>
+  </view>
 </view>

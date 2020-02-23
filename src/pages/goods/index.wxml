@@ -1,4 +1,4 @@
-<view class="product">
+<view class="product" wx:if="{{productInfo}}">
   <view class="product_pic">
     <image src="{{productInfo.thumb}}" mode="widthFix" />
   </view>
@@ -23,11 +23,11 @@
         mode="widthFix" />
     </view>
   </view>
-  <view class="product_footer">
-    <view class="product_footer__cart">
+  <view class="product_footer {{isIphoneHair && 'phoneStyle'}}">
+    <view class="product_footer__cart" bindtap="goCart">
       <view class="cart_icon">
         <image mode="widthFix" src="../../images/cart/cart-small.png" />
-        <text>10</text></view>
+        <text wx:if="{{cartNum}}">{{cartNum}}</text></view>
       购物车
     </view>
     <view class="product_footer__tocart" bindtap="toCart">加入购物车</view>
@@ -46,13 +46,13 @@
         </view>
         <view class="desc">
           <view class="name">{{productInfo.title}}</view>
-          <view class="price"><text>￥{{skuSelectObj.price/100}}</text><text class="stock">库存：{{skuSelectObj.stockNum}}件</text></view>
+          <view class="price"><text>￥{{skuSelectObj.price}}</text><text class="stock">库存：{{skuSelectObj.stockNum}}件</text></view>
           <view class="select">已选择：{{skuSelectStr}} {{selectStock}}件</view>
         </view>
       </view>
       <view class="product_skupop__lab" wx:for="{{skuInfo.tree}}" wx:key="index" wx:for-item="item"
         wx:for-index="index">
-        <label>选择{{item.k}}</label>
+        <label>{{item.k}}</label>
         <view class="list">
           <text class="{{item2.id==curSelect[index] && 'on'}}" data-index="{{index}}" data-item="{{item}}"
             data-sku="{{item2}}" wx:for="{{item.v}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2"

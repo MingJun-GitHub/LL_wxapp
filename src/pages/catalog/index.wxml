@@ -1,6 +1,6 @@
 <view class='catelog'>
   <view class='catelog_left'>
-    <scroll-view scroll-y>
+    <scroll-view scroll-y="{{true}}" scroll-with-animation="{{true}}">
       <block wx:for="{{categoryList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
         <view class="{{index==tabIndex?'on':''}}" bindtap='clickScroll' data-index="{{index}}" data-id="{{item.id}}">{{item.categoryName}}</view>
       </block>
@@ -8,7 +8,7 @@
   </view>
   <view class='catelog_right'>
     <!-- scroll-into-view="{{toView}}"  -->
-    <scroll-view scroll-y scroll-with-animation="true">
+    <scroll-view scroll-y="{{true}}" scroll-with-animation="{{true}}" bindscrolltolower="getMoreGoodsList">
       <block wx:if="{{goodsList && goodsList.length}}">
         <view bindtap="goGoods" data-item="{{item}}" class="catelog_item" wx:for="{{goodsList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
           <view class="catelog_item__pic">
@@ -16,9 +16,11 @@
           </view>
           <view class="catelog_item__info">
             <view class="title">{{item.title}}</view>
-            <view class="desc">{{item.productDescription || '暂无描述'}}</view>
-            <view class="price"><text class="yuan">￥</text>{{item.price}}</view>
+            <view class="desc">{{item.productDescription || ''}}</view>
+            <view class="price"><text class="yuan">￥</text>{{item.price}} <text class="del">￥{{item.deletePrice}}</text></view>
           </view>
+           <image class="collecticon" mode="widthFix" src="../../images/tab/collection-on.png" data-item="{{item}}" catchtap="addCollection" />
+           <image class="carticon" mode="widthFix" src="../../images/buy.png" />
         </view>
       </block>
       <block wx:else>
@@ -27,9 +29,6 @@
           暂无商品
         </view>
       </block>
-      <!-- <block wx:for="{{goodsList}}" wx:key="index" wx:for-item="item" wx:for-index="index">
-        <view bindtap='clickScroll' data-id="{{item}}">{{item}}</view>
-      </block> -->
     </scroll-view>
   </view>
 </view>

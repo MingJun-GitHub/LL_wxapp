@@ -1,0 +1,19 @@
+
+
+<view class="collect">
+    <view class="collect_list" wx:if="{{collectList && collectList.length}}">
+       <view class="collect_list__item" wx:for="{{collectList}}" wx:key="index" bindtap="goGoods" data-item="{{item}}">
+           <view class="pic"><image src="{{item.thumb}}" mode="widthFix" /></view>
+           <view class="desc">
+             <view class="tit">{{item.title}}</view>
+             <view class="desc">{{data.productDescription || ''}}</view>
+             <view class="price">¥{{item.price}}<text class="price_del">¥{{item.deletePrice}}</text></view> 
+           </view>
+           <button class="remove" data-item="{{item}}" data-index="{{index}}" catchtap="removeCollect">移除收藏夹</button>
+       </view>
+    </view>
+    <view class="collect_empty" wx:else>
+      <image src="../../images/empty.png" mode="widthFix" />
+      <view>暂无收藏</view>
+    </view>
+</view>

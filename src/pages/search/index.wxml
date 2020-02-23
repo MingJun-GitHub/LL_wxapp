@@ -1,10 +1,39 @@
 <view class="search">
-	 <view class="search_bar">
-		 <input type="text" placeholder="请输入商品"></input> <button>搜索</button>
-	 </view>
-	 <view class="search_empty">
-		 <image src="../../images/search/empty.png" mode="widthFix" />
-		 <view>哎呀，没有找到相关商品</view>
-		 <view>换个词试试吧~</view>
-	 </view>
+  <view class="search_bar">
+  <!-- focus="{{true}}" auto-focus="{{true}}" -->
+    <input type="text"  value="{{keywords}}" bindfocus="openSearchHistory" bindinput="inputKeyWords"
+      placeholder="请输入商品"></input> <button bindtap="goSearch">搜索</button>
+  </view>
+  <view class="search_mask" wx:if="{{isOpen}}" bindtap="closeSearchHistory"></view>
+  <view class="search_history" wx:if="{{isOpen}}">
+    <block wx:if="{{history.length}}">
+      <view class="search_history__tit">
+        最新搜索
+        <view class="clear" bindtap="clearHistory">
+          <image src="../../images/search/delete.png" mode="widthFix" />
+          清空
+        </view>
+      </view>
+      <view class="search_history__list">
+        <text wx:for="{{history}}" wx:key="index" data-keywords="{{item}}" bindtap="goSearchByWords">{{item}}</text>
+      </view>
+    </block>
+    <view class="search_history__tit">
+      热门搜索
+    </view>
+    <view class="search_history__hot">
+      <text wx:for="{{hotKey}}" wx:key="index" data-keywords="{{item}}" bindtap="goSearchByWords">{{item}}</text>
+    </view>
+  </view>
+  <view class="search_list" wx:if="{{searchList && searchList.length}}">
+    <goods wx:for="{{searchList}}" wx:key="index" data="{{item}}"></goods>
+  </view>
+  <block wx:else>
+    <view class="search_empty">
+      <image src="../../images/search/empty.png" mode="widthFix" />
+      <view>哎呀，没有找到相关商品</view>
+      <view>换个词试试吧~</view>
+    </view>
+  </block>
+
 </view>

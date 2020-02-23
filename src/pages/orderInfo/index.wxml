@@ -1,0 +1,48 @@
+<wxs src="../../wxs/common.wxs" module="common" />
+<view class="orderInfo" wx:if="{{orderInfo}}">
+  <!-- 0 待付款，1待发货，2已发货，3已完成，4已关闭，5退款中，6已退款,7全部订单 -->
+  <view class="orderInfo_top">
+    <view class="orderInfo_top__state">已提交订单</view>
+    <!-- <view class="orderInfo_top__time">剩余支付时间为23小时10分钟</view> -->
+    <view class="orderInfo_top__time">请等待商家发货</view>
+  </view>
+  <view class="orderInfo_content">
+    <view class="orderInfo_content__adress">
+      <image class="dsicon" src="../../images/address/address.png" mode="widthFix"></image>
+      <view class="dsinfo">
+        <view class="dstop">
+          <text class="name">{{address.receiver}}</text>
+          <text class="phone">{{address.phone}}</text>
+        </view>
+        <view class="adress">地址：{{address.addressName + ' ' +address.addressDetail}}</view>
+      </view>
+    </view>
+    <view class="orderInfo_content__goods" wx:for="{{orderInfo.orderDetails}}" wx:key="index">
+      <image class="goods_img" src="{{item.thumb}}"></image>
+      <view class="goods_info">
+        <view class="goods_top">
+          <view class="title">{{item.productName}}</view>
+          <view class="desc">已选：{{common.getSkuMsg(item.skuMsg).skuSelectStr}}</view>
+          <view class="num">×{{item.productQuantity}}</view>
+        </view>
+        <view class="price">￥{{item.price}}</view>
+      </view>
+    </view>
+    <view class="orderInfo_content__detail">
+      <view class="li">订单编号：{{orderId}}</view>
+      <view class="li">下单时间：{{orderInfo.createTime}}</view>
+      <view class="li">支付方式：{{orderInfo.payType==0?'微信支付': '货到付款'}}</view>
+      <view class="li">配送方式：快递</view>
+    </view>
+  </view>
+  <view class="orderInfo_footer">
+    <view class="orderInfo_footer__fl">
+      <text class="text">￥{{orderInfo.totalMoney}}</text>
+    </view>
+    <view class="orderInfo_footer__fr">
+      <button class="btn btn_cancel" bindtap="bindToast">取消订单</button>
+      <button class="btn btn_pay" bindtap="bindToast">去支付</button>
+      <button class="btn btn_pay" bindtap="goHome">再来一单</button>
+    </view>
+  </view>
+</view>

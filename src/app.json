@@ -1,42 +1,54 @@
 {
-	"pages": [
-		"pages/index/index",
-		"pages/user/index",
-		"pages/catalog/index",
-		"pages/cart/index",
-		"pages/search/index",
-		"pages/goods/index",
-		"pages/order/index",
-		"pages/payInfo/index"
-	],
-	"window": {
-		"backgroundTextStyle": "light",
-		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "冷链食品",
-		"navigationBarTextStyle": "black"
-	},
-	"tabBar": {
-		"selectedColor": "#f12b5f",
-		"list": [{
-		  "pagePath": "pages/index/index",
-		  "text": "首页",
-		  "iconPath": "images/tab/home.png",
-		  "selectedIconPath": "images/tab/home-on.png"
-		}, {
-			"pagePath": "pages/catalog/index",
-			"text": "分类",
-			"iconPath": "images/tab/catalog.png",
-			"selectedIconPath": "images/tab/catalog-on.png"
-		  },{
-			"pagePath": "pages/cart/index",
-			"text": "购物车",
-			"iconPath": "images/tab/cart.png",
-			"selectedIconPath": "images/tab/cart-on.png"
-		  },{
-			"pagePath": "pages/user/index",
-			"text": "我的",
-			"iconPath": "images/tab/user.png",
-			"selectedIconPath": "images/tab/user-on.png"
-		  }]
-	  }
+  "pages": [
+    "pages/index/index",
+    "pages/user/index",
+    "pages/catalog/index",
+    "pages/cart/index",
+    "pages/search/index",
+    "pages/goods/index",
+    "pages/order/index",
+    "pages/orderInfo/index",
+    "pages/login/index",
+    "pages/form/index",
+    "pages/address/index",
+    "pages/addressEdit/index",
+    "pages/payResult/index",
+    "pages/collection/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "冷链食品",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#f12b5f",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/tab/home.png",
+      "selectedIconPath": "images/tab/home-on.png"
+    }, {
+      "pagePath": "pages/catalog/index",
+      "text": "分类",
+      "iconPath": "images/tab/catalog.png",
+      "selectedIconPath": "images/tab/catalog-on.png"
+    }, {
+      "pagePath": "pages/cart/index",
+      "text": "购物车",
+      "iconPath": "images/tab/cart.png",
+      "selectedIconPath": "images/tab/cart-on.png"
+    },
+    {
+      "pagePath": "pages/user/index",
+      "text": "我的",
+      "iconPath": "images/tab/user.png",
+      "selectedIconPath": "images/tab/user-on.png"
+    }]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "冷链食品小程序"
+    }
+  }
 }

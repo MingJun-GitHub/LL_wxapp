@@ -1,0 +1,38 @@
+
+.payResult{
+   width: 100%;
+   height: 100vh;
+   background-color: #f12a5f;
+   color: #fff;
+   &_tips{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 72rpx;
+      font-size: 36rpx;
+      image{
+         width: 40rpx;
+         height: 40rpx;
+         margin-right: 20rpx;
+      }
+   }
+   &_price{
+      text-align: center;
+      font-size: 36rpx;
+      margin-top: 60rpx;
+      &__way{
+         font-size: 28rpx;
+         margin-top: 10rpx;
+      }
+   }
+   &_btn{
+      margin: 46rpx auto;
+      width: 206rpx;
+      height: 58rpx;
+      border-radius: 29rpx;
+      text-align: center;
+      background-color: #fff;
+      color: #f12a5f;
+      font-size: 24rpx;
+   }
+}

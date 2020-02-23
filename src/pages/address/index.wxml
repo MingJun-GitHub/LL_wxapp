@@ -1,0 +1,19 @@
+<view class="address">
+  <view class="address_empty" wx:if="{{!addressList.length}}">
+    <image src="../../images/address/empty.png" mode="widthFix" />
+    <view>暂无收货地址</view>
+  </view>
+  <view class="address_list" wx:else>
+    <view class="address_list__item" wx:for="{{addressList}}" wx:key="index">
+      <radio class="radio" data-index="{{index}}" data-item="{{item}}" bindtap="setDefault" checked="{{item.isDefault==1}}" color="#000"></radio>
+      <view class="adrinfo">
+          <view class="adrinfo_user">{{item.receiver}} {{item.phone}}</view>
+          <view class="adrinfo_adr">{{item.addressName}}{{item.addressDetail}}</view>
+      </view>
+      <image data-item="{{item}}" class="edit" bindtap="goAddressEdit" src="../../images/address/edit.png" mode="widthFix" />
+    </view>
+  </view>
+  <view class="address_footer">
+    <button bindtap="goNewAddress">新增收货地址</button>
+  </view>
+</view>

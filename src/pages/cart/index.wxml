@@ -1,10 +1,47 @@
+
+<wxs src="../../wxs/common.wxs" module="common" />
 <view class="cart">
-	<view class="cart_empty">
-	  <image src="../../images/cart/empty.png" mode="widthFix" />
-	  <view class="cart_empty__tips">购物车空空如也</view>
-	  <button>去逛逛</button>
-	</view>
-	<view class="cart_rec">
-	   <view class="cart_rec__tit">猜你喜欢</view>
-	</view>
+  <view class="cart_empty" wx:if="{{!cartList.length}}">
+    <image src="../../images/cart/empty.png" mode="widthFix" />
+    <view class="cart_empty__tips">购物车空空如也</view>
+    <button bindtap="goHome">去逛逛</button>
+  </view>
+  <view class="cart_list" wx:else>
+    <view class="cart_list__item" wx:for="{{cartList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+      <view class="is_checked" >
+        <radio class="radio" checked="{{item.is_checked}}" color="#000" data-index="{{index}}" bindtap="selectSku"></radio>
+      </view>
+      <view class="goods">
+        <view class="goods_img">
+          <image src="{{item.thumb}}" mode="widthFix" />
+        </view>
+        <view class="goods_info">
+          <view class="tit">{{item.productName}}</view>
+          <view class="sku">已选：{{common.getSkuMsg(item.skuMsg).skuSelectStr}}</view>
+          <view class="price">
+            ¥{{item.price}}
+            <text class="price_del">¥{{item.deletePrice || 0}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="cacl" >
+        <text class="cacl_reduce" data-item="{{item}}" data-type="reduce" data-index="{{index}}" bindtap="updateProductCount">-</text>
+        {{item.productQuantity}}
+        <text class="cacl_add" data-item="{{item}}" data-type="add" data-index="{{index}}" bindtap="updateProductCount">+</text>
+      </view>
+      <image mode="widthFix" src="../../images/delete.png" bindtap="deleteSku" data-id="{{item.id}}" class="delbtn" />
+    </view>
+  </view>
+  <!-- <view class="cart_rec">
+    <view class="cart_rec__tit">猜你喜欢</view>
+  </view> -->
+  <view class="cart_footer" wx:if="{{cartList.length}}">
+     <view class="cart_footer__checked">
+        <radio class="radio" data-stauts="{{allCheckedStauts}}" checked="{{allCheckedStauts}}" bindtap="checkedAll" color="#000">全选</radio>
+     </view>
+     <view class="cart_footer__detail">
+         <view class="hj">合计: <text>¥{{totalMoney}}</text></view>
+         <button disabled="{{!hasCheckedList.length}}" bindtap="goForm">结算({{hasCheckedList.length}})</button>
+     </view>
+  </view> 
 </view>

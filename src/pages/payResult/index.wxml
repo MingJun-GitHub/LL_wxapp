@@ -1,0 +1,8 @@
+<view class="payResult">
+    <view class="payResult_tips"><image src="../../images/form/right.png" mode="widthFix"/>{{payType==0?'支付成功': '订单提交成功'}}</view>
+    <view class="payResult_price">
+        <text>￥{{totalMoney}}</text>
+        <view class="payResult_price__way">{{payType==0?'微信支付': '货到付款'}}</view>
+    </view>
+    <button class="payResult_btn" bindtap="lookOrder">查看订单</button>
+</view>

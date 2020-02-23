@@ -1,53 +1,46 @@
+<wxs src="../../wxs/common.wxs" module="common" />
 <view class="order">
-	<view class="order-tabs">
-		<text class="tabItem cur">全部</text>
-		<text class="tabItem">待付款</text>
-		<text class="tabItem">待发货</text>
-		<text class="tabItem">已发货</text>
-		<text class="tabItem">待评价</text>
-	</view>
-	<view class="order-content">
-		<view class="orderItem">
-			<view class="order-top">
-				<image class="goods-img" src="https://image.watsons.com.cn//upload/e2c3f75c.jpg"></image>
-				<view class="goods-info">
-					<view class="goods-info-top">
-						<view class="title">MMH新手套装 多肉植物组合盆栽绿植花卉...</view>
-						<view class="state">卖家已发货</view>	
-					</view>
-					<view class="category">
-						<text class="sort">颜色分类：</text> 
-						<text  class="num">×1</text>
-					</view>
-					<view class="price">￥21.9</view>
-				</view>
-			</view>
-			<view class="order-bottom">
-				<button  size="mini" class="btn">查看物流</button>
-			</view>
-		</view>
-		<view class="orderItem">
-			<view class="order-top">
-				<image class="goods-img" src="https://image.watsons.com.cn//upload/e2c3f75c.jpg"></image>
-				<view class="goods-info">
-					<view class="goods-info-top">
-						<view class="title">MMH新手套装 多肉植物组合盆栽绿植花卉...</view>
-						<view class="state">已取消</view>	
-					</view>
-					<view class="category">
-						<text class="sort">颜色分类：</text> 
-						<text  class="num">×1</text>
-					</view>
-					<view class="price">￥21.9</view>
-				</view>
-			</view>
-			<view class="order-bottom">
-				<button  size="mini" class="btn">再来一单</button>
-			</view>
-		</view>
-		<view class="nothing">
-			<image class="nothing-icon" src="https://img.xiaopiu.com/userImages/img1905016f83329580.png" />
-			<text class="text-tips">暂无相关订单</text>
-		</view>
-	</view>
+  <view class="order_tabs">
+    <view data-status="7" bindtap="selectTab" class="{{orderStatus==7?'cur':''}}">全部</view>
+    <view data-status="0" bindtap="selectTab" class="{{orderStatus==0?'cur':''}}">待付款</view>
+    <view data-status="1" bindtap="selectTab" class="{{orderStatus==1?'cur':''}}">待发货</view>
+    <view data-status="2" bindtap="selectTab" class="{{orderStatus==2?'cur':''}}">已发货</view>
+    <!-- <view data-status="3" bindtap="selectTab" class="{{orderStatus==3?'cur':''}}">待评价</view> -->
+  </view>
+  <view class="order_list" wx:if="{{orderList && orderList.length}}">
+    <view class="order_list__item" wx:for="{{orderList}}" wx:key="index">
+      <view class="orderid">
+        <view>订单号：{{item.orderId}}</view> <text wx:if="{{item.expressName}}">{{item.expressName}}</text>
+      </view>
+      <view class="goods" wx:for="{{item.orderDetails}}" wx:key="index2" wx:for-item="item2" wx:for-index="index2">
+        <view class="goods_img">
+          <image mode="widthFix" src="{{item2.thumb}}" />
+        </view>
+        <view class="goods_info">
+          <view class="goods_info__top">
+
+            <view class="title">{{item2.productName}}</view>
+            <view class="state">
+              <!-- 卖家已发货 -->
+            </view>
+          </view>
+          <view class="category">
+            <text class="sort">{{common.getSkuMsg(item2.skuMsg).skuSelectStr}}</text>
+            <text class="num">×{{item2.productQuantity}}</text>
+          </view>
+          <!-- <text class="price_del"></text> -->
+          <view class="price">¥{{item2.price}} </view>
+        </view>
+      </view>
+      <view class="createtime">订单时间：{{item.createTime}}</view>
+      <view class="bottom">
+        共{{item.orderDetails.length}}件商品 合计:<text class="price">¥{{item.totalMoney}}</text>
+        <button class="btn" bindtap="goOrderInfo" data-id="{{item.orderId}}">查看详情</button>
+      </view>
+    </view>
+  </view>
+  <view class="order_empty" wx:else>
+    <image src="https://img.xiaopiu.com/userImages/img1905016f83329580.png" mode="widthFix" />
+    <view class="order_empty__tips">暂无相关订单</view>
+  </view>
 </view>

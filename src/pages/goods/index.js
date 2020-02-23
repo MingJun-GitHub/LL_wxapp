@@ -1,14 +1,18 @@
 const app = getApp()
-import {cloneDeep} from 'lodash'
+import {
+	cloneDeep
+} from 'lodash'
 Page({
 	data: {
+		isIphoneHair: wx.utils.isIphoneHair,
 		productInfo: '',
 		productId: '',
 		skuInfo: '',
 		imgList: '',
 		hideSku: true,
+		cartNum: 0,
 		curSelect: [0, 0, 0], // 当前选择 对应当前选择的skuid
-		selectStock: 99, // 当前选中的数量
+		selectStock: 1, // 当前选中的数量
 		skuSelectData: [],
 		skuSelectStr: '',
 		skuSelectObj: 0,
@@ -42,7 +46,9 @@ Page({
 				for (let k = 0; k < data.tree[i].v.length; k++) {
 					if (curSelect[i] == data.tree[i].v[k].id) {
 						skuSelectData.push(data.tree[i].v[k])
-						skuSelectStr.push(data.tree[i].k + '-' + data.tree[i].v[k].skuValue)
+
+						// skuSelectStr.push(data.tree[i].k + '-' + data.tree[i].v[k].skuValue)
+						skuSelectStr.push(data.tree[i].v[k].skuValue)
 						break
 					} else {
 						continue
@@ -57,7 +63,6 @@ Page({
 				skuSelectIndex = i
 				skuSelectObj = keys
 				if (this.data.selectStock > skuSelectObj.stockNum) {
-					console.log('haha--->', haha)
 					this.setData({
 						selectStock: skuSelectObj.stockNum
 					})
@@ -70,7 +75,7 @@ Page({
 		if (!skuSelectStr.length) {
 			skuSelectStr = '暂无规格可以选，请查看其它商品'
 		} else {
-			skuSelectStr = skuSelectStr.join(' ')
+			skuSelectStr = skuSelectStr.join(',')
 		}
 		return {
 			skuSelectData,
@@ -155,28 +160,96 @@ Page({
 		})
 	},
 	toCart() {
-		console.log('toCart')
 		if (this.data.skuInfo.tree.length) {
 			this.changePoupop()
 		} else {
-			
-		}	
+
+		}
 	},
 	toBuy() {
 		if (this.data.skuInfo.tree.length) {
 			this.changePoupop()
 		} else {
-			
+
 		}
 	},
 	// 添加购物车
-	addCart() {
-		wx.utils.Toast('添加成功-仅测试用')
+	async addCart() {
+		if(!wx.utils.Login.isBind) {
+			wx.navigateTo({
+				url: '/pages/login/index'
+			})
+			return
+		}
+		wx.utils.showLoading()
+		const res = await wx.utils.Http.post({
+			url: '/buycar/addBuyCar',
+			data: {
+				...this.dealData()
+			}
+		})
+		wx.utils.hideLoading()
+		if (res.code == '0') {
+			wx.utils.Toast('加购成功，快去购物车查看吧~')
+		} else {
+			wx.utils.Toast('加购失败，请稍后重试')
+		}
+		this.setData({
+			hideSku: true
+		})
+		this.getCartNum()
+	},
+	goCart() {
+		wx.switchTab({
+			url: '/pages/cart/index'
+		})
+	},
+	dealData() {
+		const skuMsg = JSON.stringify({
+			skuSelectStr: this.data.skuSelectStr
+		})
+		var skIdGroup = []
+		this.data.skuSelectData.map((item, index) => {
+			skIdGroup.push(`s${index+1}:${item.id}`)
+		})
+		skIdGroup = skIdGroup.join(',')
+		return {
+			productId: this.data.productId,
+			productQuantity: this.data.selectStock,
+			skIdGroup,
+			skuMsg
+		}
 	},
 	quickBuy() {
-		wx.navigateTo({
-			url: '/pages/order/index'
+		if(!wx.utils.Login.isBind) {
+			wx.navigateTo({
+				url: '/pages/login/index'
+			})
+			return
+		}
+		wx.setStorageSync('buyType', 2)
+		wx.setStorageSync('skuList', [{
+			...this.dealData(),
+			...this.data.skuSelectObj,
+			productName: this.data.productInfo.title,
+			thumb: this.data.productInfo.thumb
+		}])
+		this.setData({
+			hideSku: true
 		})
+		wx.navigateTo({
+			url: '/pages/form/index'
+		})
+	},
+	async getCartNum() {
+		const res = await wx.utils.Http.get({
+			url: '/buycar/listBuyCar'
+		})
+		if (res.code == 0) {
+			this.setData({
+				cartNum: res.data.length
+			})
+		}
 	},
 	onShareAppMessage() {
 		return {
@@ -184,6 +257,9 @@ Page({
 			path: `pages/goods/index?id=${this.data.productId}`,
 			imageUrl: this.data.productInfo.thumb
 		}
+	},
+	onShow() {
+		this.getCartNum()
 	},
 	async initPage() {
 		this.getProductSku()
@@ -194,7 +270,9 @@ Page({
 		this.setData({
 			productId: parmas.id
 		})
+		wx.utils.showLoading()
 		await this.initPage()
+		wx.utils.hideLoading()
 		wx.setNavigationBarTitle({
 			title: this.data.productInfo.title
 		})

@@ -3,9 +3,13 @@
 .index{
 	width: 750rpx;
 	min-height: 100vh;
+	box-sizing: border-box;
+	padding-bottom: 30rpx;
 	&_topbar{
 		width: 100%;
 		height: auto;
+		min-height: 200rpx;
+		background-color: #efefef;
 		image{
 			width: 100%;
 			height: auto;

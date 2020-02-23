@@ -1,0 +1,64 @@
+<wxs src="../../wxs/common.wxs" module="common" />
+<view class="form">
+  <view class="form_address" bindtap="selectAddress">
+    <block wx:if="{{address}}">
+      <view class="form_address__user"><text wx:if="{{address.isDefault}}">默认</text>{{address.receiver}}
+        {{address.phone}}</view>
+      <view class="form_address__area">{{address.addressName}}</view>
+      <view class="form_address__adr">{{address.addressDetail}}</view>
+    </block>
+    <block wx:else>
+      <view class="form_address_empty">
+        <image src="../../images/add.png" mode="widthFix" />新增收货地址</view>
+    </block>
+    <image src="../../images/arrow_right.png" class="righticon" mode="widthFix" />
+  </view>
+  <view class="form_info">
+    <view class="form_info__list">
+      <view class="goods" wx:for="{{skuList}}" wx:key="index">
+        <view class="pic">
+          <image src="{{item.thumb || '../../images/goods/default.png'}}" mode="widthFix" />
+        </view>
+        <view class="desc">
+          <view class="desc_title">{{item.productName}}</view>
+          <view class="desc_subtit">{{common.getSkuMsg(item.skuMsg).skuSelectStr}}</view>
+        </view>
+        <view class="selected">
+          <view class="selected_price">￥{{item.price}}</view>
+          <view class="selected_num">x{{item.productQuantity}}</view>
+        </view>
+      </view>
+    </view>
+    <!--配送方式-->
+    <view class="form_info__delivery">
+      <text>配送方式</text>
+      <picker class="tips" bindchange="expressChange" value="{{index}}" range="{{expressName}}">
+          {{expressName[expressIndex]}}￥{{expressList[expressIndex].fee}} <image src="../../images/arrow_right.png" mode="widthFix" />
+      </picker>
+    </view>
+    <view class="form_info__mark">
+       <view>备注信息</view>
+       <textarea class="mark" maxlength="{{150}}" auto-height="{{true}}" value="{{mark}}" bindinput="setMarkInfo"></textarea>
+    </view>
+    <view class="form_info__total">
+      共{{skuList.length}}件商品 小计：￥{{goodsMoney}}
+    </view>
+    <view class="form_info__paytype">
+      <view class="title">支付方式</view>
+      <view class="typelist">
+        <view class="typelist_item" data-type="0" bindtap="paySelect">
+          <image src="../../images/form/wx_pay.png" mode="widthFix" />微信支付 <text class="rec">推荐</text>
+          <radio class="radio" checked="{{payType==0}}" color="#000"></radio>
+        </view>
+        <view class="typelist_item" data-type="1" bindtap="paySelect">
+          <image src="../../images/form/hd_pay.png" mode="widthFix" />货到付款 <text class="tips">收货时扫码支付，更便捷</text>
+          <radio class="radio" checked="{{payType==1}}" color="#000"></radio>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="form_footer {{isIphoneHair && 'phoneStyle'}}">
+    <text>￥{{totalMoney}}</text>
+    <button bindtap="createOrder">立即支付</button>
+  </view>
+</view>

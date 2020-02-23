@@ -12,8 +12,7 @@ export function formatTime(date) {
 	const second = date.getSeconds();
 	return (
 		[year, month, day].map(formatNumber).join('/') +
-		' ' +
-		[hour, minute, second].map(formatNumber).join(':')
+		' ' + [hour, minute, second].map(formatNumber).join(':')
 	);
 }
 
@@ -50,11 +49,36 @@ export function promisify(api) {
 	}
 }
 
-export function debounce(fn, wait) {    
-    var timeout = null;    
-    return function() {        
-        if(timeout !== null)   clearTimeout(timeout);        
-        timeout = setTimeout(fn, wait);    
-    }
+export function debounce(fn, wait) {
+	var timeout = null;
+	return function () {
+		if (timeout !== null) clearTimeout(timeout)
+		timeout = setTimeout(fn, wait)
+	}
 }
 
+export function addCollect(productId) {
+	return new Promise(async (resolve) => {
+		if (!wx.utils.Login.isBind) {
+			wx.navigateTo({
+				url: `/pages/login/index`
+			})
+			return
+		}
+		wx.utils.showLoading()
+		const res = await wx.utils.Http.post({
+			url: '/myStore/addMyStore',
+			data: {
+				productId
+			}
+		})
+		wx.utils.hideLoading()
+		if (res.code ==0) {
+			wx.utils.Toast('收藏成功')
+		} else {
+			wx.utils.Toast('收藏失败')
+		}
+		resolve(res.code)
+	})
+	
+}

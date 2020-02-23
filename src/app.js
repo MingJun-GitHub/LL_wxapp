@@ -1,44 +1,24 @@
 // import './utils/init'
-import wxs from './utils/wxs'
+import index from './utils/index'
 
-wx.utils = wxs
+wx.utils = index
 
 App({
-	onLaunch() {
-		// console.log(camelCase('OnLaunch'));
-		// 调用API从本地缓存中获取数据
-		const logs = wx.getStorageSync('logs') || [];
-		logs.unshift(Date.now());
-		wx.setStorageSync('logs', logs);
+	async onLaunch() {
+		// 初始化数据
+		wx.utils.isIphoneHair = this.isIphoneHair()
+		await wx.utils.Login.initUserInfo()
 	},
-	async getUserInfo(cb) {
-		if (this.globalData.userInfo) {
-			typeof cb === 'function' && cb(this.globalData.userInfo);
-		}
-		else {
-			// 调用登录接口
-			wx.login({
-				success: async (res) => {
-					console.log('res', res)
-					// wx.getUserInfo({
-					// 	success: (res) => {
-					// 		this.globalData.userInfo = res.userInfo;
-					// 		typeof cb === 'function' && cb(this.globalData.userInfo);
-					// 	},
-					// });
-					// const back = await wxs.http.get({
-					// 	url: '/wxUser/login',
-					// 	data: {
-					// 		wxcode: res.code
-					// 	}
-					// })
-					console.log('back--->', back)
-				},
-			});
-		}
+	// 流海
+	isIphoneHair() {
+		let deviceInfo = wx.getSystemInfoSync()
+		let isIphoneX = /iPhone X/i.test(deviceInfo.model)
+		let isIphoneXS = deviceInfo.platform === 'ios' && deviceInfo.pixelRatio === 3 && deviceInfo.screenWidth === 375 && deviceInfo.screenHeight === 812
+		let isIphoneXSMAX = deviceInfo.platform === 'ios' && deviceInfo.pixelRatio === 3 && deviceInfo.screenWidth === 414 && deviceInfo.screenHeight === 896
+		let isIphoneXR = deviceInfo.platform === 'ios' && deviceInfo.pixelRatio === 2 && deviceInfo.screenWidth === 414 && deviceInfo.screenHeight === 896
+		return isIphoneX || isIphoneXS || isIphoneXSMAX || isIphoneXR
 	},
 	globalData: {
-		userInfo: null,
+		// userInfo: null
 	}
 });
-

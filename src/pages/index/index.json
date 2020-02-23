@@ -2,7 +2,6 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "user": "../../components/user/user",
     "navbar": "../../components/navbar/index",
     "goods": "../../components/goods/index"
   }

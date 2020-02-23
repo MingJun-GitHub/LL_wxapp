@@ -1,9 +1,9 @@
-import {
-	promisify,
-	debounce
-} from './util'
-import Http from './request'
-import triggerbus from 'triggerbus'
+
+
+
+import {promisify}  from './util'
+
+
 function Toast(title, duration = 2000) {
 	wx.showToast({
 		title,
@@ -26,14 +26,13 @@ promisifyArr.forEach(item => {
 	baseObj[item] = promisify(wx[item])
 })
 
-const wxPro = {
-	Toast,
-	Loading,
-	promisify,
-	Http,
-	debounce,
-	Bus: triggerbus(), // 来个发布订阅吧
-	...baseObj,
+export default {
+    Toast,
+    Loading,
+    ...baseObj
 }
 
-export default wxPro
+
+
+
+
