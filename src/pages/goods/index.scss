@@ -4,7 +4,7 @@
 
 	&_pic {
 		width: 750rpx;
-		height: 750rpx;
+		height: auto;
 		background-color: #efefef;
 		display: flex;
 		justify-content: center;
@@ -201,10 +201,11 @@
 			background-color: #fff;
 			position: absolute;
 			bottom: 0;
-			height: 60vh;
+			min-height: 60vh;
 			border-radius: 20rpx 20rpx 0 0;
 			box-sizing: border-box;
 			padding: 0 20rpx;
+			padding-bottom: 180rpx;
 			.skupop_close{
 				width: 30rpx;
 				height: 30rpx;

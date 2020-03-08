@@ -16,6 +16,7 @@ Page({
 		skuSelectData: [],
 		skuSelectStr: '',
 		skuSelectObj: 0,
+		skuEmpty: false,// 库存为空的
 		skuSelectIndex: 0 // 默认第一个
 	},
 	// 商品sku
@@ -56,8 +57,10 @@ Page({
 				}
 			}
 		}
+		console.log('curSelect', curSelect)
 		for (let i = 0; i < data.list.length; i++) {
 			var keys = data.list[i]
+			// console.log('s1, s2, s3', curSelect[0], curSelect[1], curSelect[2], keys.s1 == curSelect[0] && keys.s2 == curSelect[1] && keys.s3 == curSelect[2])
 			if (keys.s1 == curSelect[0] && keys.s2 == curSelect[1] && keys.s3 == curSelect[2]) {
 				// 相等，获取index
 				skuSelectIndex = i
@@ -67,11 +70,13 @@ Page({
 						selectStock: skuSelectObj.stockNum
 					})
 				}
+				this.setData({
+					skuEmpty: skuSelectObj.stockNum == 0 // 已经为空了
+				})
 				break
-			} else {
-				continue
 			}
 		}
+		
 		if (!skuSelectStr.length) {
 			skuSelectStr = '暂无规格可以选，请查看其它商品'
 		} else {
@@ -106,7 +111,8 @@ Page({
 				skuSelectData,
 				skuSelectIndex,
 				skuSelectStr,
-				skuSelectObj
+				skuSelectObj,
+				
 			})
 		}
 	},
@@ -181,6 +187,10 @@ Page({
 			})
 			return
 		}
+		if (this.data.skuEmpty) {
+			wx.utils.Toast('所选商品规格已卖光~')
+			return
+		}
 		wx.utils.showLoading()
 		const res = await wx.utils.Http.post({
 			url: '/buycar/addBuyCar',
@@ -225,6 +235,10 @@ Page({
 			wx.navigateTo({
 				url: '/pages/login/index'
 			})
+			return
+		}
+		if (this.data.skuEmpty) {
+			wx.utils.Toast('所选商品规格已卖光~')
 			return
 		}
 		wx.setStorageSync('buyType', 2)

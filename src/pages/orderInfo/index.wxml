@@ -2,9 +2,40 @@
 <view class="orderInfo" wx:if="{{orderInfo}}">
   <!-- 0 待付款，1待发货，2已发货，3已完成，4已关闭，5退款中，6已退款,7全部订单 -->
   <view class="orderInfo_top">
-    <view class="orderInfo_top__state">已提交订单</view>
-    <!-- <view class="orderInfo_top__time">剩余支付时间为23小时10分钟</view> -->
-    <view class="orderInfo_top__time">请等待商家发货</view>
+    <block wx:if="{{orderInfo.orderStatus==0}}">
+      <view class="orderInfo_top__state">已提交订单</view>
+      <view class="orderInfo_top__time">为了不影响发货，请尽快支付</view>
+    </block>
+    <block wx:if="{{orderInfo.orderStatus==1}}">
+      <view class="orderInfo_top__state">已提交订单</view>
+      <view class="orderInfo_top__time">请等待商家发货</view>
+    </block>
+
+    <block wx:if="{{orderInfo.orderStatus==2}}">
+      <view class="orderInfo_top__state">已提交订单</view>
+      <view class="orderInfo_top__time">商家已发货</view>
+    </block>
+
+    <block wx:if="{{orderInfo.orderStatus==3}}">
+      <view class="orderInfo_top__state">交易已完成</view>
+    </block>
+
+    <block wx:if="{{orderInfo.orderStatus==4}}">
+      <view class="orderInfo_top__state">交易已关闭</view>
+    </block>
+
+    <block wx:if="{{orderInfo.orderStatus==4}}">
+      <view class="orderInfo_top__state">交易已关闭</view>
+    </block>
+
+    <block wx:if="{{orderInfo.orderStatus==5}}">
+      <view class="orderInfo_top__state">订单处理中</view>
+      <view class="orderInfo_top__time">退款中</view>
+    </block>
+    <block wx:if="{{orderInfo.orderStatus==6}}">
+      <view class="orderInfo_top__state">订单处理中</view>
+      <view class="orderInfo_top__time">退款中</view>
+    </block>
   </view>
   <view class="orderInfo_content">
     <view class="orderInfo_content__adress">
@@ -40,8 +71,8 @@
       <text class="text">￥{{orderInfo.totalMoney}}</text>
     </view>
     <view class="orderInfo_footer__fr">
-      <button class="btn btn_cancel" bindtap="bindToast">取消订单</button>
-      <button class="btn btn_pay" bindtap="bindToast">去支付</button>
+      <!-- <button class="btn btn_cancel" bindtap="bindToast">取消订单</button> -->
+      <button class="btn btn_pay" bindtap="bindToast" wx:if="{{orderInfo.payType==0&&orderInfo.orderStatus==0}}">去支付</button>
       <button class="btn btn_pay" bindtap="goHome">再来一单</button>
     </view>
   </view>

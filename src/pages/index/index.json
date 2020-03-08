@@ -1,6 +1,8 @@
 
 {
   "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#F13835",
   "usingComponents": {
     "navbar": "../../components/navbar/index",
     "goods": "../../components/goods/index"

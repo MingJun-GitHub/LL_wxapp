@@ -3,7 +3,7 @@ const config = {
     // 开发环境
 	development: {
 		wxappId: 'wxd43f3498112f6565',
-		baseUrl: 'http://47.112.113.141:8101/shopapi'
+		baseUrl: 'http://47.112.107.132:8101/shopapi'
     },
     // 生产
 	production: {

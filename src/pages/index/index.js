@@ -17,6 +17,16 @@ Page({
 			url: '/pages/search/index',
 		});
 	},
+	async onPullDownRefresh() {
+		this.setData({
+			isIng: false,
+			isEnd: false,
+			pageNo: 1,
+			goodsList: []
+		})
+		await this.getHomeGoodsList()
+		wx.stopPullDownRefresh()
+	},
 	onPageScroll(e) {
 		let {
 			scrollTop

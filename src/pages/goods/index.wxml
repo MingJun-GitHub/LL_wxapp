@@ -55,7 +55,7 @@
         <label>{{item.k}}</label>
         <view class="list">
           <text class="{{item2.id==curSelect[index] && 'on'}}" data-index="{{index}}" data-item="{{item}}"
-            data-sku="{{item2}}" wx:for="{{item.v}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2"
+            data-sku="{{item2}}" data-skuindex="{{index2}}" wx:for="{{item.v}}" wx:for-index="index2" wx:for-item="item2" wx:key="index2"
             bindtap="selectSku">{{item2.skuValue}}</text>
         </view>
       </view>
