@@ -1,12 +1,31 @@
-
-<view class="index">  
-  <navbar searchBar="{{true}}" searchText="请输入商品名称"  background="{{backgroundColorTop}}" backgroundColorTop="{{backgroundColorTop}}" ext-class="index_bar" back="{{false}}" home="{{false}}" bindsearch="goSearch"></navbar>
+<view class="index" wx:if="{{isLoaded}}">
+  <!-- <navbar searchText="请输入商品名称" title="速鲜食品" color="#ffffff" background="{{backgroundColorTop}}"
+    backgroundColorTop="{{backgroundColorTop}}" ext-class="index_bar" back="{{false}}" home="{{false}}"
+    bindsearch="goSearch"></navbar> -->
   <view class="index_topbar">
-    <image src="{{banner}}" mode="widthFix"></image>
+    <!-- banner || -->
+    <image src="../../images/index/home_banner.png" mode="widthFix"></image>
+  </view>
+  <view class="index_search" bindtap="goSearch">
+    <image src="../../images/index/search.png" mode="widthFix" /> 请输入商品名称
+  </view>
+  <view class="index_rec">
+    <view class="index_rec__tit">速鲜特价专卖</view>
+    <view class="index_res__list">
+      <scroll-view scroll-x="{{true}}" class="index_rec__scroll">
+        <view class="thumb" wx:for="{{recList}}" wx:key="index" bindtap="goGoods" data-item="{{item}}">
+          <image src="{{item.thumb}}" mode="heightFix" />
+        </view>
+      </scroll-view>
+    </view>
   </view>
   <!-- <button bindgetuserinfo="getUserinfo" open-type="getUserInfo">拿用户信息</button> -->
-   <!-- <button bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">手机号</button> -->
+  <!-- <button bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">手机号</button> -->
+  <view class="index_tips">
+    <image src="../../images/index/tipbar.png" mode="widthFix" />
+    <view>精选商品·特价优惠</view>
+  </view>
   <view class="index_goods">
-     <goods wx:for="{{goodsList}}"  wx:for-index="index" wx:for-item="item" wx:key="index" data="{{item}}"></goods>
+    <goods wx:for="{{goodsList}}" wx:for-index="index" wx:for-item="item" wx:key="index" data="{{item}}"></goods>
   </view>
 </view>

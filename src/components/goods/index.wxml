@@ -12,8 +12,8 @@
     <text class="price_o">￥{{data.price}}</text>
     <text class="price_del">￥{{data.deleted}}</text>
     <view class="tools">
-        <image class="tools_collection" data-item="{{data}}" catchtap="addCollection" src="../../images/tab/collection-on.png" mode="widthFix" />
-        <image class="tools_addcart" src="../../images/buy.png" mode="widthFix" />
+        <image class="tools_collection" data-item="{{data}}" catchtap="addCollection" src="../../images/index/collect.png" mode="widthFix" />
+        <image class="tools_addcart" src="../../images/index/add.png" mode="widthFix" />
     </view>
   </view>
 </view>

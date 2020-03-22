@@ -3,6 +3,7 @@ const app = getApp(); //  eslint-disable-line no-undef
 Page({
 	data: {
 		goodsList: [],
+		recList: [],
 		backgroundColorTop: 'transparent',
 		pageNo: 1,
 		pageSize: 10,
@@ -10,7 +11,8 @@ Page({
 		isEnd: false,
 		total: 0,
 		productGroupId: 2,
-		banner: null
+		banner: null,
+		isLoaded: false
 	},
 	goSearch() {
 		wx.navigateTo({
@@ -24,14 +26,14 @@ Page({
 			pageNo: 1,
 			goodsList: []
 		})
-		await this.getHomeGoodsList()
+		await this.initPage()
 		wx.stopPullDownRefresh()
 	},
 	onPageScroll(e) {
 		let {
 			scrollTop
 		} = e
-		if (scrollTop >= 100) {
+		if (scrollTop >= 30) {
 			this.setData({
 				backgroundColorTop: '#f12b5f'
 			})
@@ -41,7 +43,21 @@ Page({
 			})
 		}
 	},
-
+	async getRecList() {
+		const res = await wx.utils.Http.get({
+			url: `/home/listProductPage`,
+			data: {
+				pageNo: 1,
+				pageSize: 10,
+				productGroupId: 1
+			}
+		})
+		if (res.code == 0) {
+			this.setData({
+				recList: res.data.records
+			})
+		}
+	},
 	// 获取首页商品列表
 	async getHomeGoodsList() {
 		if (this.data.isIng || this.data.isEnd) {
@@ -77,7 +93,7 @@ Page({
 		const res = await wx.utils.Http.get({
 			url: '/home/findBanner'
 		})
-		if (res.code ==0) {
+		if (res.code == 0) {
 			this.setData({
 				banner: res.data.bannerUrl
 			})
@@ -95,8 +111,25 @@ Page({
 			await this.getHomeGoodsList()
 		}
 	},
-	async onLoad() {
+	goGoods(e) {
+		let {
+			item
+		} = e.currentTarget.dataset
+		wx.navigateTo({
+			url: `/pages/goods/index?id=${item.id}`
+		})
+	},
+	async initPage() {
+		wx.utils.showLoading()
 		this.getBanner()
 		await this.getHomeGoodsList()
+		await this.getRecList()
+		wx.utils.hideLoading()
+	},
+	async onLoad() {
+		await this.initPage()
+		this.setData({
+			isLoaded: true
+		})
 	}
 });

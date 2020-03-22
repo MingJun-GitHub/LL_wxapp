@@ -1,8 +1,9 @@
 
 {
-  "navigationStyle": "custom",
   "enablePullDownRefresh": true,
-  "backgroundColor": "#F13835",
+  "backgroundColor": "#F2F2F2",
+  "navigationBarTextStyle": "white",
+	"navigationBarBackgroundColor": "#f12a5f",
   "usingComponents": {
     "navbar": "../../components/navbar/index",
     "goods": "../../components/goods/index"

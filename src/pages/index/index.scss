@@ -1,15 +1,18 @@
-
-
 .index{
 	width: 750rpx;
 	min-height: 100vh;
 	box-sizing: border-box;
 	padding-bottom: 30rpx;
+	background-color: #F2F2F2;
+	padding-top: 30rpx;
 	&_topbar{
 		width: 100%;
 		height: auto;
 		min-height: 200rpx;
 		background-color: #efefef;
+		position: absolute;
+		top: -90rpx;
+		right: 0;
 		image{
 			width: 100%;
 			height: auto;
@@ -17,9 +20,93 @@
 	}
 	&_bar{
 		position: absolute;
+		
+	}
+	&_search{
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		line-height: normal;
+		height: 60rpx;
+		box-sizing: border-box;
+		padding: 0 15rpx;
+		color: #FFE8E8;
+		font-size: 26rpx;
+		background-color: #FD8284;
+		margin:0rpx 30rpx;
+		border-radius: 30rpx;
+		box-sizing: border-box;
+		position: relative;
+		z-index: 2;
+		image{
+			width: 34rpx;
+			height: 34rpx;
+			margin-right: 18rpx;
+		}
+	}
+	&_rec{
+		width: 720rpx;
+		height: 235rpx;
+		background-color: #fff;
+		border-radius: 20rpx;
+		// box-shadow:0px -1px 0px 0px rgba(230,230,230,1);
+		box-sizing: border-box;
+		padding: 0 30rpx;
+		position: relative;
+		margin: 30rpx auto 0;
+		&__tit{
+			height: 66rpx;
+			line-height: 66rpx;
+			font-size: 30rpx;
+			font-weight: 500;
+			color: #333;
+		}
+		&__scroll{
+			width: 100%;
+			white-space: nowrap;
+			height: 150rpx;
+		}
+		.thumb{
+			width: 150rpx;
+			height: 150rpx;
+			display:inline-flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			margin-right: 15rpx;
+			image{
+				// width: 100%;
+				width: auto;
+				height: 100%;
+			}
+		}
+	}
+	&_tips{
+		width: 322rpx;
+		height: auto;
+		position: relative;
+		z-index: 1;
+		margin: 35rpx auto;
+		view{
+			width: 100%;
+			height: 100%;
+			position: relative;
+			z-index: 2;
+			background-color: transparent;
+			color: #fff;
+			font-size: 30rpx;
+			font-style: italic;
+			font-weight: 500;
+			text-align: center;
+		}
+		image{
+			position: absolute;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+		}
 	}
 	&_goods {
-		background-color: #fff;
 		// width: 750rpx;
 		box-sizing: border-box;
 		display: flex;

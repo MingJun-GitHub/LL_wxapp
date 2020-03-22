@@ -19,8 +19,8 @@
             <view class="desc">{{item.productDescription || ''}}</view>
             <view class="price"><text class="yuan">￥</text>{{item.price}} <text class="del">￥{{item.deletePrice}}</text></view>
           </view>
-           <image class="collecticon" mode="widthFix" src="../../images/tab/collection-on.png" data-item="{{item}}" catchtap="addCollection" />
-           <image class="carticon" mode="widthFix" src="../../images/buy.png" />
+           <image class="collecticon" mode="widthFix" src="../../images/index/collect.png" data-item="{{item}}" catchtap="addCollection" />
+           <image class="carticon" mode="widthFix" src="../../images/index/add.png" />
         </view>
       </block>
       <block wx:else>
