@@ -59,7 +59,7 @@ export function debounce(fn, wait) {
 
 export function addCollect(productId) {
 	return new Promise(async (resolve) => {
-		if (!wx.utils.Login.isBind) {
+		if (!wx.utils.Login.isLogin) {
 			wx.navigateTo({
 				url: `/pages/login/index`
 			})

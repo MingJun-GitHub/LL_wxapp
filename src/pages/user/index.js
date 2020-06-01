@@ -61,13 +61,11 @@ Page({
 		await wx.utils.Login.initUserInfo()
 		this.setData({
 			userInfo: wx.utils.Login.userInfo,
-			isLogin: wx.utils.Login.isBind,
-			phone: wx.utils.Login.phone
+			isLogin: wx.utils.Login.isLogin,
+			phone: wx.utils.Login.mobilePhone
 		})
+		console.log('userInfo', this.data.userInfo)
 		wx.utils.hideLoading()
-	},
-	onUnload() {
-		wx.utils.Bus.off('loginSuc')
 	},
 	async onShow() {
 		await this.init()

@@ -181,7 +181,7 @@ Page({
 	},
 	// 添加购物车
 	async addCart() {
-		if(!wx.utils.Login.isBind) {
+		if(!wx.utils.Login.isLogin) {
 			wx.navigateTo({
 				url: '/pages/login/index'
 			})
@@ -231,7 +231,7 @@ Page({
 		}
 	},
 	quickBuy() {
-		if(!wx.utils.Login.isBind) {
+		if(!wx.utils.Login.isLogin) {
 			wx.navigateTo({
 				url: '/pages/login/index'
 			})
