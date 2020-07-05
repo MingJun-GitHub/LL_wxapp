@@ -134,11 +134,13 @@ Page({
 		wx.utils.hideLoading()
 		if (res.code == 0) {
 			if (res.data.orderId) {
-				await this.orderCallBack(res.data.orderId)
-				wx.removeStorageSync('skuList')
-				wx.removeStorageSync('buyType')
+				const payStatus = await this.orderCallBack(res.data.orderId)
+				if (payStatus) {
+					wx.removeStorageSync('skuList')
+					wx.removeStorageSync('buyType')
+				}
 				wx.redirectTo({
-					url: `/pages/payResult/index?orderId=${res.data.orderId}&totalMoney=${res.data.totalMoney}&payType=${this.data.payType}`
+					url: `/pages/payResult/index?orderId=${res.data.orderId}&totalMoney=${res.data.totalMoney}&payType=${this.data.payType}&payStatus=${payStatus}`
 				})
 			} else {
 				wx.utils.Toast('创建订单失败，请稍后再试...')
@@ -154,7 +156,29 @@ Page({
 				orderId
 			}
 		})
-		console.log('订单回调', res)
+		if (this.data.payType==0) {
+			var data = res.data
+			const params = {
+				timeStamp: data.timeStamp,
+				nonceStr: data.nonceStr,
+				package: data.packageValue,
+				signType: data.signType || 'MD5',
+				paySign: data.paySign
+			}
+			wx.requestPayment({
+				...params,
+				success(res) {
+					wx.utils.Toast('支付成功')
+					return true
+				},
+				fail(res) {
+					wx.utils.Toast('支付失败')
+					return false
+				}
+			})
+		} else {
+			return res.code == 0?true:false
+		}
 	},
 	onShow() {
 		this.getAddressList()
