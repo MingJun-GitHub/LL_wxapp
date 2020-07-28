@@ -134,14 +134,18 @@ Page({
 		wx.utils.hideLoading()
 		if (res.code == 0) {
 			if (res.data.orderId) {
-				const payStatus = await this.orderCallBack(res.data.orderId)
+				// 微信支付
+				const payStatus = this.data.payType == 0 ? await this.wxPay(res.data.orderId) : await this.payOffLine(res.data.orderId)
 				if (payStatus) {
 					wx.removeStorageSync('skuList')
 					wx.removeStorageSync('buyType')
 				}
-				wx.redirectTo({
-					url: `/pages/payResult/index?orderId=${res.data.orderId}&totalMoney=${res.data.totalMoney}&payType=${this.data.payType}&payStatus=${payStatus}`
-				})
+				setTimeout(() => {
+					wx.redirectTo({
+						url: `/pages/payResult/index?orderId=${res.data.orderId}&totalMoney=${res.data.totalMoney}&payType=${this.data.payType}&payStatus=${payStatus}`
+					})
+				}, this.data.payType == 0 ? 1.5e3 : 100)
+
 			} else {
 				wx.utils.Toast('创建订单失败，请稍后再试...')
 			}
@@ -149,37 +153,63 @@ Page({
 			x.utils.Toast('创建订单失败，请稍后再试...')
 		}
 	},
-	async orderCallBack(orderId) {
+	async payOffLine(orderId) {
+		if (!orderId) {
+			wx.utils.Toast('系统错误')
+			return
+		}
 		const res = await wx.utils.Http.post({
-			url: this.data.payType == 0 ? '/pay/createWeiXinOrder' : '/pay/payOffLine',
-			data: {
-				orderId
-			}
+			url: '/pay/payOffLine'
 		})
-		if (this.data.payType==0) {
-			var data = res.data
-			const params = {
-				timeStamp: data.timeStamp,
-				nonceStr: data.nonceStr,
-				package: data.packageValue,
-				signType: data.signType || 'MD5',
-				paySign: data.paySign
-			}
-			wx.requestPayment({
-				...params,
-				success(res) {
-					wx.utils.Toast('支付成功')
-					return true
-				},
-				fail(res) {
-					wx.utils.Toast('支付失败')
-					return false
-				}
-			})
+		if (res.code == 0) {
+			return true
 		} else {
-			return res.code == 0?true:false
+			return false
 		}
 	},
+	async wxPay(orderId) {
+		if (!orderId) {
+			wx.utils.Toast('系统错误')
+			return
+		}
+		const status = await wx.utils.wxPay(orderId)
+		if (status == 1) {
+			return true
+		} else {
+			return false
+		}
+	},
+	// async orderCallBack(orderId) {
+	// 	const res = await wx.utils.Http.post({
+	// 		url: this.data.payType == 0 ? '/pay/createWeiXinOrder' : '/pay/payOffLine',
+	// 		data: {
+	// 			orderId
+	// 		}
+	// 	})
+	// 	if (this.data.payType==0) {
+	// 		var data = res.data
+	// 		const params = {
+	// 			timeStamp: data.timeStamp,
+	// 			nonceStr: data.nonceStr,
+	// 			package: data.packageValue,
+	// 			signType: data.signType || 'MD5',
+	// 			paySign: data.paySign
+	// 		}
+	// 		wx.requestPayment({
+	// 			...params,
+	// 			success(res) {
+	// 				wx.utils.Toast('支付成功')
+	// 				return true
+	// 			},
+	// 			fail(res) {
+	// 				wx.utils.Toast('支付失败')
+	// 				return false
+	// 			}
+	// 		})
+	// 	} else {
+	// 		return res.code == 0?true:false
+	// 	}
+	// },
 	onShow() {
 		this.getAddressList()
 	},

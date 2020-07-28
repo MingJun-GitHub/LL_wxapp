@@ -1,8 +1,16 @@
 <view class="payResult">
-    <view class="payResult_tips"><image src="../../images/form/right.png" mode="widthFix"/>{{payType==0?'支付成功': '订单提交成功'}}</view>
-    <view class="payResult_price">
-        <text>￥{{totalMoney}}</text>
-        <view class="payResult_price__way">{{payType==0?'微信支付': '货到付款'}}</view>
-    </view>
+  <view class="payResult_tips">
+    <image src="../../images/form/right.png" mode="widthFix" />
+    <text wx:if="{{payType==0}}">{{payStatus?'支付成功':'支付失败'}}</text>
+    <text wx:else>订单提交成功</text>
+  </view>
+  <view class="payResult_price">
+    <text>￥{{totalMoney}}</text>
+    <view class="payResult_price__way">{{payType==0?'微信支付': '货到付款'}}</view>
+  </view>
+  <view class="payResult_btnbox">
     <button class="payResult_btn" bindtap="lookOrder">查看订单</button>
+    <button class="payResult_btn" bindtap="goPay" wx:if="{{!payStatus && payType==0}}">重新支付</button>
+  </view>
+
 </view>

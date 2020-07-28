@@ -25,8 +25,15 @@
          margin-top: 10rpx;
       }
    }
+   &_btnbox{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70%;
+      margin: 0 auto;
+   }
    &_btn{
-      margin: 46rpx auto;
+      margin: 55rpx auto;
       width: 206rpx;
       height: 58rpx;
       border-radius: 29rpx;

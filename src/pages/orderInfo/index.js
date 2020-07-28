@@ -6,14 +6,14 @@ Page({
 		address: null
 	},
 	async getOrderInfo() {
-		wx.utils.showLoading()
+		// wx.utils.showLoading()
 		const res = await wx.utils.Http.get({
 			url: '/orderDetail/findOrderDetailByOrderId',
 			data: {
 				orderId: this.data.orderId
 			}
 		})
-		wx.utils.hideLoading()
+		// wx.utils.hideLoading()
 		if (res.code ==0) {
 			var address = JSON.parse(res.data.receiveAddress)
 			console.log('address', address)
@@ -29,8 +29,9 @@ Page({
 		})
 	},
 	// 等微信支付
-	bindToast() {
-		wx.utils.Toast('等微信支付...')
+	async goPay() {
+		await wx.utils.wxPay(this.data.orderId)
+		this.getOrderInfo()
 	},
 	async onLoad(parmas) {
 		const {

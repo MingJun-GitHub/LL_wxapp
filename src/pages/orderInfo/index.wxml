@@ -72,7 +72,7 @@
     </view>
     <view class="orderInfo_footer__fr">
       <!-- <button class="btn btn_cancel" bindtap="bindToast">取消订单</button> -->
-      <button class="btn btn_pay" bindtap="bindToast" wx:if="{{orderInfo.payType==0&&orderInfo.orderStatus==0}}">去支付</button>
+      <button class="btn btn_pay" bindtap="goPay" wx:if="{{orderInfo.payType==0&&orderInfo.orderStatus==0}}">去支付</button>
       <button class="btn btn_pay" bindtap="goHome">再来一单</button>
     </view>
   </view>

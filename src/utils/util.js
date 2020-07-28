@@ -73,12 +73,47 @@ export function addCollect(productId) {
 			}
 		})
 		wx.utils.hideLoading()
-		if (res.code ==0) {
+		if (res.code == 0) {
 			wx.utils.Toast('收藏成功')
 		} else {
 			wx.utils.Toast('收藏失败')
 		}
 		resolve(res.code)
 	})
-	
+
+}
+
+
+export function wxPay(orderId) {
+	return new Promise(async resolve => {
+		const res = await wx.utils.Http.post({
+			url: `/pay/createWeiXinOrder?orderId=${orderId}`
+		})
+		if (res.code == 0) {
+			const data = res.data
+			const params = {
+				timeStamp: data.timeStamp,
+				nonceStr: data.nonceStr,
+				package: data.packageValue,
+				signType: data.signType || 'MD5',
+				paySign: data.paySign
+			}
+			wx.requestPayment({
+				...params,
+				success(res) {
+					// 成功
+					wx.utils.Toast('支付成功，请耐心等待商家发货')
+					resolve(1)
+				},
+				fail(res) {
+					wx.utils.Toast('请完成微信支付，以免影响商家发货')
+					resolve(2)
+				}
+			})
+		} else {
+			wx.utils.Toast('系统错误，无法发起微信支付')
+			resolve(0) // 失败
+		}
+	})
+
 }
